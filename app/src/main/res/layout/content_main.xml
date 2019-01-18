@@ -15,6 +15,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:onClick="onInfoPressed"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,23 +33,19 @@
             android:textAppearance="@android:style/TextAppearance.Material.Menu"
             android:textSize="200sp" />
 
-        <SeekBar
-            android:id="@+id/seekBar2"
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="1000"
-            android:progress="500" />
+            android:layout_height="wrap_content" />
 
-        <EditText
-            android:id="@+id/editText"
+        <TextView
+            android:id="@+id/textView2"
             android:layout_width="match_parent"
-            android:layout_height="203dp"
-            android:ems="10"
-            android:inputType="textMultiLine"
-            android:text="Next: 5\nShow: 6\nBalance: 0.83\nScore: -1"
+            android:layout_height="197dp"
+            android:text="Next: 1\nShow:1\nBalance: 1\nScore: 0"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
-            android:textSize="30sp" />
+            android:textSize="36sp" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

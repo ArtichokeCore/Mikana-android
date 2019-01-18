@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -42,6 +43,21 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
+    }
+
+    public void onSettingsPressed(View view) {
+        Toast toast = Toast.makeText(this.getApplicationContext(), "Settings", Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    public void onInfoPressed(View view) {
+        Toast toast = Toast.makeText(this.getApplicationContext(), "Info", Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    public void onNextPressed(View view) {
+        Toast toast = Toast.makeText(this.getApplicationContext(), "Next", Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     @Override
