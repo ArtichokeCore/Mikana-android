@@ -1,0 +1,1000 @@
+{
+  "hiragana": [
+    [
+      {
+        "character": "あ",
+        "romaji": "A",
+        "checked": true
+      }, {
+      "character": "い",
+      "romaji": "I",
+      "checked": true
+    }, {
+      "character": "う",
+      "romaji": "U",
+      "checked": true
+    }, {
+      "character": "え",
+      "romaji": "E",
+      "checked": true
+    }, {
+      "character": "お",
+      "romaji": "O",
+      "checked": true
+    }
+    ],
+    [
+      {
+        "character": "か",
+        "romaji": "KA",
+        "checked": false
+      }, {
+      "character": "き",
+      "romaji": "KI",
+      "checked": false
+    }, {
+      "character": "く",
+      "romaji": "KU",
+      "checked": false
+    }, {
+      "character": "け",
+      "romaji": "KE",
+      "checked": false
+    }, {
+      "character": "こ",
+      "romaji": "KO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "さ",
+        "romaji": "SA",
+        "checked": false
+      }, {
+      "character": "し",
+      "romaji": "SHI",
+      "checked": false
+    }, {
+      "character": "す",
+      "romaji": "SU",
+      "checked": false
+    }, {
+      "character": "せ",
+      "romaji": "SE",
+      "checked": false
+    }, {
+      "character": "そ",
+      "romaji": "SO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "た",
+        "romaji": "TA",
+        "checked": false
+      }, {
+      "character": "ち",
+      "romaji": "CHI",
+      "checked": false
+    }, {
+      "character": "つ",
+      "romaji": "TSU",
+      "checked": false
+    }, {
+      "character": "て",
+      "romaji": "TE",
+      "checked": false
+    }, {
+      "character": "と",
+      "romaji": "TO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "な",
+        "romaji": "NA",
+        "checked": false
+      }, {
+      "character": "に",
+      "romaji": "NI",
+      "checked": false
+    }, {
+      "character": "ぬ",
+      "romaji": "NU",
+      "checked": false
+    }, {
+      "character": "ね",
+      "romaji": "NE",
+      "checked": false
+    }, {
+      "character": "の",
+      "romaji": "NO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "は",
+        "romaji": "HA",
+        "checked": false
+      }, {
+      "character": "ひ",
+      "romaji": "HI",
+      "checked": false
+    }, {
+      "character": "ふ",
+      "romaji": "FU",
+      "checked": false
+    }, {
+      "character": "へ",
+      "romaji": "HE",
+      "checked": false
+    }, {
+      "character": "ほ",
+      "romaji": "HO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ま",
+        "romaji": "MA",
+        "checked": false
+      }, {
+      "character": "み",
+      "romaji": "MI",
+      "checked": false
+    }, {
+      "character": "む",
+      "romaji": "MU",
+      "checked": false
+    }, {
+      "character": "め",
+      "romaji": "ME",
+      "checked": false
+    }, {
+      "character": "も",
+      "romaji": "MO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "や",
+        "romaji": "YA",
+        "checked": false
+      }, {
+      "character": "ゆ",
+      "romaji": "YU",
+      "checked": false
+    }, {
+      "character": "よ",
+      "romaji": "YO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ら",
+        "romaji": "RA",
+        "checked": false
+      }, {
+      "character": "り",
+      "romaji": "RI",
+      "checked": false
+    }, {
+      "character": "る",
+      "romaji": "RU",
+      "checked": false
+    }, {
+      "character": "れ",
+      "romaji": "RE",
+      "checked": false
+    }, {
+      "character": "ろ",
+      "romaji": "RO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "わ",
+        "romaji": "WA",
+        "checked": false
+      }, {
+      "character": "を",
+      "romaji": "WO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ん",
+        "romaji": "N",
+        "checked": false
+      }
+    ],
+    [
+      {
+        "character": "が",
+        "romaji": "GA",
+        "checked": false
+      }, {
+      "character": "ぎ",
+      "romaji": "GI",
+      "checked": false
+    }, {
+      "character": "ぐ",
+      "romaji": "GU",
+      "checked": false
+    }, {
+      "character": "げ",
+      "romaji": "GE",
+      "checked": false
+    }, {
+      "character": "ご",
+      "romaji": "GO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ざ",
+        "romaji": "ZA",
+        "checked": false
+      }, {
+      "character": "じ",
+      "romaji": "JI",
+      "checked": false
+    }, {
+      "character": "ず",
+      "romaji": "ZU",
+      "checked": false
+    }, {
+      "character": "ぜ",
+      "romaji": "ZE",
+      "checked": false
+    }, {
+      "character": "ぞ",
+      "romaji": "ZO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "だ",
+        "romaji": "DA",
+        "checked": false
+      }, {
+      "character": "ぢ",
+      "romaji": "DI",
+      "checked": false
+    }, {
+      "character": "づ",
+      "romaji": "DU",
+      "checked": false
+    }, {
+      "character": "で",
+      "romaji": "DE",
+      "checked": false
+    }, {
+      "character": "ど",
+      "romaji": "DO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ば",
+        "romaji": "BA",
+        "checked": false
+      }, {
+      "character": "び",
+      "romaji": "BI",
+      "checked": false
+    }, {
+      "character": "ぶ",
+      "romaji": "BU",
+      "checked": false
+    }, {
+      "character": "べ",
+      "romaji": "BE",
+      "checked": false
+    }, {
+      "character": "ぼ",
+      "romaji": "BO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ぱ",
+        "romaji": "PA",
+        "checked": false
+      }, {
+      "character": "ぴ",
+      "romaji": "PI",
+      "checked": false
+    }, {
+      "character": "ぷ",
+      "romaji": "PU",
+      "checked": false
+    }, {
+      "character": "ぺ",
+      "romaji": "PE",
+      "checked": false
+    }, {
+      "character": "ぽ",
+      "romaji": "PO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "きゃ",
+        "romaji": "KYA",
+        "checked": false
+      }, {
+      "character": "きゅ",
+      "romaji": "KYU",
+      "checked": false
+    }, {
+      "character": "きょ",
+      "romaji": "KYO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "しゃ",
+        "romaji": "SHA",
+        "checked": false
+      }, {
+      "character": "しゅ",
+      "romaji": "SHU",
+      "checked": false
+    }, {
+      "character": "しょ",
+      "romaji": "SHO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ちゃ",
+        "romaji": "CHA",
+        "checked": false
+      }, {
+      "character": "ちゅ",
+      "romaji": "CHU",
+      "checked": false
+    }, {
+      "character": "ちょ",
+      "romaji": "CHO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "にゃ",
+        "romaji": "NYA",
+        "checked": false
+      }, {
+      "character": "にゅ",
+      "romaji": "NYU",
+      "checked": false
+    }, {
+      "character": "にょ",
+      "romaji": "NYO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ひゃ",
+        "romaji": "HYA",
+        "checked": false
+      }, {
+      "character": "ひゅ",
+      "romaji": "HYU",
+      "checked": false
+    }, {
+      "character": "ひょ",
+      "romaji": "HYO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "みゃ",
+        "romaji": "MYA",
+        "checked": false
+      }, {
+      "character": "みゅ",
+      "romaji": "MYU",
+      "checked": false
+    }, {
+      "character": "みょ",
+      "romaji": "MYO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "りゃ",
+        "romaji": "RYA",
+        "checked": false
+      }, {
+      "character": "りゅ",
+      "romaji": "RYU",
+      "checked": false
+    }, {
+      "character": "りょ",
+      "romaji": "RYO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ぎゃ",
+        "romaji": "GYA",
+        "checked": false
+      }, {
+      "character": "ぎゅ",
+      "romaji": "GYU",
+      "checked": false
+    }, {
+      "character": "ぎょ",
+      "romaji": "GYO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "じゃ",
+        "romaji": "JA",
+        "checked": false
+      }, {
+      "character": "じゅ",
+      "romaji": "JU",
+      "checked": false
+    }, {
+      "character": "じょ",
+      "romaji": "JO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "びゃ",
+        "romaji": "BYA",
+        "checked": false
+      }, {
+      "character": "びゅ",
+      "romaji": "BYU",
+      "checked": false
+    }, {
+      "character": "びょ",
+      "romaji": "BYO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ぴゃ",
+        "romaji": "PYA",
+        "checked": false
+      }, {
+      "character": "ぴゅ",
+      "romaji": "PYU",
+      "checked": false
+    }, {
+      "character": "ぴょ",
+      "romaji": "PYO",
+      "checked": false
+    }
+    ]
+  ],
+  "katakana": [
+    [
+      {
+        "character": "ア",
+        "romaji": "A",
+        "checked": true
+      }, {
+      "character": "イ",
+      "romaji": "I",
+      "checked": true
+    }, {
+      "character": "ウ",
+      "romaji": "U",
+      "checked": true
+    }, {
+      "character": "エ",
+      "romaji": "E",
+      "checked": true
+    }, {
+      "character": "オ",
+      "romaji": "O",
+      "checked": true
+    }
+    ],
+    [
+      {
+        "character": "カ",
+        "romaji": "KA",
+        "checked": false
+      }, {
+      "character": "キ",
+      "romaji": "KI",
+      "checked": false
+    }, {
+      "character": "ク",
+      "romaji": "KU",
+      "checked": false
+    }, {
+      "character": "ケ",
+      "romaji": "KE",
+      "checked": false
+    }, {
+      "character": "コ",
+      "romaji": "KO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "サ",
+        "romaji": "SA",
+        "checked": false
+      }, {
+      "character": "シ",
+      "romaji": "SHI",
+      "checked": false
+    }, {
+      "character": "ス",
+      "romaji": "SU",
+      "checked": false
+    }, {
+      "character": "セ",
+      "romaji": "SE",
+      "checked": false
+    }, {
+      "character": "ソ",
+      "romaji": "SO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "タ",
+        "romaji": "TA",
+        "checked": false
+      }, {
+      "character": "チ",
+      "romaji": "CHI",
+      "checked": false
+    }, {
+      "character": "ツ",
+      "romaji": "TSU",
+      "checked": false
+    }, {
+      "character": "テ",
+      "romaji": "TE",
+      "checked": false
+    }, {
+      "character": "ト",
+      "romaji": "TO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ナ",
+        "romaji": "NA",
+        "checked": false
+      }, {
+      "character": "ニ",
+      "romaji": "NI",
+      "checked": false
+    }, {
+      "character": "ヌ",
+      "romaji": "NU",
+      "checked": false
+    }, {
+      "character": "ネ",
+      "romaji": "NE",
+      "checked": false
+    }, {
+      "character": "ノ",
+      "romaji": "NO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ハ",
+        "romaji": "HA",
+        "checked": false
+      }, {
+      "character": "ヒ",
+      "romaji": "HI",
+      "checked": false
+    }, {
+      "character": "フ",
+      "romaji": "FU",
+      "checked": false
+    }, {
+      "character": "ヘ",
+      "romaji": "HE",
+      "checked": false
+    }, {
+      "character": "ホ",
+      "romaji": "HO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "マ",
+        "romaji": "MA",
+        "checked": false
+      }, {
+      "character": "ミ",
+      "romaji": "MI",
+      "checked": false
+    }, {
+      "character": "ム",
+      "romaji": "MU",
+      "checked": false
+    }, {
+      "character": "メ",
+      "romaji": "ME",
+      "checked": false
+    }, {
+      "character": "モ",
+      "romaji": "MO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ヤ",
+        "romaji": "YA",
+        "checked": false
+      }, {
+      "character": "ユ",
+      "romaji": "YU",
+      "checked": false
+    }, {
+      "character": "ヨ",
+      "romaji": "YO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ラ",
+        "romaji": "RA",
+        "checked": false
+      }, {
+      "character": "リ",
+      "romaji": "RI",
+      "checked": false
+    }, {
+      "character": "ル",
+      "romaji": "RU",
+      "checked": false
+    }, {
+      "character": "レ",
+      "romaji": "RE",
+      "checked": false
+    }, {
+      "character": "ロ",
+      "romaji": "RO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ワ",
+        "romaji": "WA",
+        "checked": false
+      }, {
+      "character": "ヲ",
+      "romaji": "WO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ン",
+        "romaji": "N",
+        "checked": false
+      }
+    ],
+    [
+      {
+        "character": "ガ",
+        "romaji": "GA",
+        "checked": false
+      }, {
+      "character": "ギ",
+      "romaji": "GI",
+      "checked": false
+    }, {
+      "character": "グ",
+      "romaji": "GU",
+      "checked": false
+    }, {
+      "character": "ゲ",
+      "romaji": "GE",
+      "checked": false
+    }, {
+      "character": "ゴ",
+      "romaji": "GO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ザ",
+        "romaji": "ZA",
+        "checked": false
+      }, {
+      "character": "ジ",
+      "romaji": "ZI",
+      "checked": false
+    }, {
+      "character": "ズ",
+      "romaji": "ZU",
+      "checked": false
+    }, {
+      "character": "ゼ",
+      "romaji": "ZE",
+      "checked": false
+    }, {
+      "character": "ゾ",
+      "romaji": "ZO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ダ",
+        "romaji": "DA",
+        "checked": false
+      }, {
+      "character": "ヂ",
+      "romaji": "DI",
+      "checked": false
+    }, {
+      "character": "ヅ",
+      "romaji": "DU",
+      "checked": false
+    }, {
+      "character": "デ",
+      "romaji": "DE",
+      "checked": false
+    }, {
+      "character": "ド",
+      "romaji": "DO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "バ",
+        "romaji": "BA",
+        "checked": false
+      }, {
+      "character": "ビ",
+      "romaji": "BI",
+      "checked": false
+    }, {
+      "character": "ブ",
+      "romaji": "BU",
+      "checked": false
+    }, {
+      "character": "ベ",
+      "romaji": "BE",
+      "checked": false
+    }, {
+      "character": "ボ",
+      "romaji": "BO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "パ",
+        "romaji": "PA",
+        "checked": false
+      }, {
+      "character": "ピ",
+      "romaji": "PI",
+      "checked": false
+    }, {
+      "character": "プ",
+      "romaji": "PU",
+      "checked": false
+    }, {
+      "character": "ペ",
+      "romaji": "PE",
+      "checked": false
+    }, {
+      "character": "ポ",
+      "romaji": "PO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "キャ",
+        "romaji": "KYA",
+        "checked": false
+      }, {
+      "character": "キュ",
+      "romaji": "KYU",
+      "checked": false
+    }, {
+      "character": "キョ",
+      "romaji": "KYO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "シャ",
+        "romaji": "SHA",
+        "checked": false
+      }, {
+      "character": "シュ",
+      "romaji": "SHU",
+      "checked": false
+    }, {
+      "character": "ショ",
+      "romaji": "SHO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "チャ",
+        "romaji": "CHA",
+        "checked": false
+      }, {
+      "character": "チュ",
+      "romaji": "CHU",
+      "checked": false
+    }, {
+      "character": "チョ",
+      "romaji": "CHO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ニャ",
+        "romaji": "NYA",
+        "checked": false
+      }, {
+      "character": "ニュ",
+      "romaji": "NYU",
+      "checked": false
+    }, {
+      "character": "ニョ",
+      "romaji": "NYO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ヒャ",
+        "romaji": "HYA",
+        "checked": false
+      }, {
+      "character": "ヒュ",
+      "romaji": "HYU",
+      "checked": false
+    }, {
+      "character": "ヒョ",
+      "romaji": "HYO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ミャ",
+        "romaji": "MYA",
+        "checked": false
+      }, {
+      "character": "ミュ",
+      "romaji": "MYU",
+      "checked": false
+    }, {
+      "character": "ミョ",
+      "romaji": "MYO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "リャ",
+        "romaji": "RYA",
+        "checked": false
+      }, {
+      "character": "リュ",
+      "romaji": "RYU",
+      "checked": false
+    }, {
+      "character": "リョ",
+      "romaji": "RYO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ギャ",
+        "romaji": "GYA",
+        "checked": false
+      }, {
+      "character": "ギュ",
+      "romaji": "GYU",
+      "checked": false
+    }, {
+      "character": "ギョ",
+      "romaji": "GYO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ジャ",
+        "romaji": "JA",
+        "checked": false
+      }, {
+      "character": "ジュ",
+      "romaji": "JU",
+      "checked": false
+    }, {
+      "character": "ジョ",
+      "romaji": "JO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ビャ",
+        "romaji": "BYA",
+        "checked": false
+      }, {
+      "character": "ビュ",
+      "romaji": "BYU",
+      "checked": false
+    }, {
+      "character": "ビョ",
+      "romaji": "BYO",
+      "checked": false
+    }
+    ],
+    [
+      {
+        "character": "ピャ",
+        "romaji": "PYA",
+        "checked": false
+      }, {
+      "character": "ピュ",
+      "romaji": "PYU",
+      "checked": false
+    }, {
+      "character": "ピョ",
+      "romaji": "PYO",
+      "checked": false
+    }
+    ]
+  ]
+}
