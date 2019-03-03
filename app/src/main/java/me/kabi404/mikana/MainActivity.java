@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import me.kabi404.mikana.model.KanaManager;
+import me.kabi404.mikana.model.Syllabary;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
         }
 
+        kanaManager.selectAllSyllabary(Syllabary.HIRAGANA);
 
     }
 

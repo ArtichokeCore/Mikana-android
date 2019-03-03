@@ -18,6 +18,8 @@ public final class KanaManager {
     private static final String ROMAJI_ATTR = "romaji";
     private static final String JAPANESE_KANA_ATTR = "character";
 
+    private static final int ROW_FIRST_KANA_INDEX = 0;
+
     private List<List<Kana>> kanaRows;
     private Syllabary currentSyllabary;
 
@@ -27,7 +29,7 @@ public final class KanaManager {
     private static KanaManager singleton;
 
     private KanaManager(InputStream kanaStream) throws IOException, JSONException {
-        setKanaRows(new LinkedList<List<Kana>>());
+        setKanaRows(new ArrayList<List<Kana>>());
         setCurrentSyllabary(Syllabary.HIRAGANA);
         setSelectedKanas(new ArrayList<Kana>());
         setUnusedKanas(new LinkedList<Integer>());
@@ -59,7 +61,7 @@ public final class KanaManager {
 
     private void parseSyllabary(JSONArray jsonSyllabary, Syllabary syllabary) throws JSONException {
         for(int rowIndex = 0; rowIndex < jsonSyllabary.length(); rowIndex++) {
-            List<Kana> kanaRow = new ArrayList<>();
+            List<Kana> kanaRow = new LinkedList<>();
             JSONArray jsonRow = jsonSyllabary.getJSONArray(rowIndex);
             for(int kanaIndex = 0; kanaIndex < jsonRow.length(); kanaIndex++) {
                 JSONObject jsonKana = jsonRow.getJSONObject(kanaIndex);
@@ -72,6 +74,18 @@ public final class KanaManager {
             this.kanaRows.add(kanaRow);
         }
     }
+
+    public void selectAllSyllabary(Syllabary syllabary) {
+
+        setSelectedKanas(new ArrayList<Kana>());
+
+        for(int rowIndex = 0; rowIndex < this.kanaRows.size(); rowIndex++) {
+            if(kanaRows.get(rowIndex).get(ROW_FIRST_KANA_INDEX).getSyllabary() == syllabary)
+                selectedKanas.addAll(kanaRows.get(rowIndex));
+        }
+    }
+
+    // Getters & Setters
 
     public List<List<Kana>> getKanaRows() {
         return kanaRows;
