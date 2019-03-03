@@ -1,8 +1,6 @@
 package me.kabi404.mikana;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,8 +12,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+import me.kabi404.mikana.model.KanaManager;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private static final String SYLLABARIES_FILE_NAME = "syllabaries.json";
+
+    private KanaManager kanaManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +41,13 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        try {
+            InputStream syllabariesStream = getAssets().open(SYLLABARIES_FILE_NAME);
+            kanaManager = KanaManager.getInstance(syllabariesStream);
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
 
 
     }
