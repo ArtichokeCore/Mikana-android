@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 public final class KanaManager {
 
@@ -19,6 +20,10 @@ public final class KanaManager {
     private static final String JAPANESE_KANA_ATTR = "character";
 
     private static final int ROW_FIRST_KANA_INDEX = 0;
+    private static final boolean WITH_REPETITION = true;
+    private static final boolean WITHOUT_REPETITION = false;
+
+    private Kana currentKana;
 
     private List<List<Kana>> kanaRows;
     private Syllabary currentSyllabary;
@@ -82,6 +87,36 @@ public final class KanaManager {
         for(int rowIndex = 0; rowIndex < this.kanaRows.size(); rowIndex++) {
             if(kanaRows.get(rowIndex).get(ROW_FIRST_KANA_INDEX).getSyllabary() == syllabary)
                 selectedKanas.addAll(kanaRows.get(rowIndex));
+        }
+
+        setUnusedKanas(new LinkedList<Integer>());
+    }
+
+    public void getRandomKana() {
+        getRandomKana(WITH_REPETITION);
+    }
+
+    public Kana getRandomKana(boolean withRepetition) {
+
+        Random rnd = new Random();
+        int randomIndex;
+
+        if(withRepetition == WITH_REPETITION) {
+            randomIndex = rnd.nextInt(selectedKanas.size());
+        } else {
+            if(unusedKanas.isEmpty())
+                reAddAllUnusedKanas();
+
+            randomIndex = rnd.nextInt(unusedKanas.size());
+            unusedKanas.remove(randomIndex);
+        }
+
+        return selectedKanas.get(randomIndex);
+    }
+
+    private void reAddAllUnusedKanas() {
+        for(int i = 0; i < selectedKanas.size(); i++) {
+            unusedKanas.add(i);
         }
     }
 

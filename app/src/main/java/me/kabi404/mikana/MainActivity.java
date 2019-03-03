@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity
 
     private KanaManager kanaManager;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,8 +67,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onNextPressed(View view) {
-        Toast toast = Toast.makeText(this.getApplicationContext(), "Next", Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(this.getApplicationContext(), kanaManager.getRandomKana(false).getKanaChar(), Toast.LENGTH_SHORT);
         toast.show();
+
+
     }
 
     @Override
