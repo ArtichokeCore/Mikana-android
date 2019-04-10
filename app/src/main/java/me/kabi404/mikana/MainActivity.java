@@ -21,16 +21,19 @@ import java.io.InputStream;
 import me.kabi404.mikana.model.Kana;
 import me.kabi404.mikana.model.KanaManager;
 import me.kabi404.mikana.model.Syllabary;
+import me.kabi404.mikana.score.Score;
 
-public class MainActivity extends AppCompatActivity
+public final class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String SYLLABARIES_FILE_NAME = "syllabaries.json";
 
     private KanaManager kanaManager;
+    private Score score;
 
     private TextView kanaView;
     private TextView answerView;
+    private TextView scoreView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,10 @@ public class MainActivity extends AppCompatActivity
 
         kanaView = findViewById(R.id.kanaView);
         answerView = findViewById(R.id.answerView);
+        scoreView = findViewById(R.id.scoreView);
+
+        score = Score.getInstance();
+        scoreView.setText(score.toString());
 
         try {
             InputStream syllabariesStream = getAssets().open(SYLLABARIES_FILE_NAME);
@@ -69,12 +76,18 @@ public class MainActivity extends AppCompatActivity
 
     public void onInfoPressed(View view) {
         answerView.setText(kanaManager.getCurrentKana().getRomaji());
+
+        score.infoButtonPressed();
+        scoreView.setText(score.toString());
     }
 
     public void onNextPressed(View view) {
         answerView.setText("");
         kanaManager.selectRandomKana(KanaManager.WITH_REPETITION);
         kanaView.setText(kanaManager.getCurrentKana().getKanaChar());
+
+        score.nextButtonPressed();
+        scoreView.setText(score.toString());
     }
 
     @Override
