@@ -2,6 +2,11 @@ package me.kabi404.mikana.model;
 
 public final class Kana {
 
+    public static final String HIRAGANA_ATTR = "hiragana";
+    public static final String KATAKANA_ATTR = "katakana";
+    public static final String ROMAJI_ATTR = "romaji";
+    public static final String JAPANESE_KANA_ATTR = "character";
+
     private Syllabary syllabary;
     private String kanaChar;
     private String romaji;

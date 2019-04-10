@@ -3,108 +3,85 @@
     [
       {
         "character": "あ",
-        "romaji": "A",
-        "checked": true
+        "romaji": "A"
       }, {
       "character": "い",
-      "romaji": "I",
-      "checked": true
+      "romaji": "I"
     }, {
       "character": "う",
-      "romaji": "U",
-      "checked": true
+      "romaji": "U"
     }, {
       "character": "え",
-      "romaji": "E",
-      "checked": true
+      "romaji": "E"
     }, {
       "character": "お",
-      "romaji": "O",
-      "checked": true
+      "romaji": "O"
     }
     ],
     [
       {
         "character": "か",
-        "romaji": "KA",
-        "checked": false
+        "romaji": "KA"
       }, {
       "character": "き",
-      "romaji": "KI",
-      "checked": false
+      "romaji": "KI"
     }, {
       "character": "く",
-      "romaji": "KU",
-      "checked": false
+      "romaji": "KU"
     }, {
       "character": "け",
-      "romaji": "KE",
-      "checked": false
+      "romaji": "KE"
     }, {
       "character": "こ",
-      "romaji": "KO",
-      "checked": false
+      "romaji": "KO"
     }
     ],
     [
       {
         "character": "さ",
-        "romaji": "SA",
-        "checked": false
+        "romaji": "SA"
       }, {
       "character": "し",
-      "romaji": "SHI",
-      "checked": false
+      "romaji": "SHI"
     }, {
       "character": "す",
-      "romaji": "SU",
-      "checked": false
+      "romaji": "SU"
     }, {
       "character": "せ",
-      "romaji": "SE",
-      "checked": false
+      "romaji": "SE"
     }, {
       "character": "そ",
-      "romaji": "SO",
-      "checked": false
+      "romaji": "SO"
     }
     ],
     [
       {
         "character": "た",
-        "romaji": "TA",
-        "checked": false
+        "romaji": "TA"
       }, {
       "character": "ち",
-      "romaji": "CHI",
-      "checked": false
+      "romaji": "CHI"
     }, {
       "character": "つ",
-      "romaji": "TSU",
-      "checked": false
+      "romaji": "TSU"
     }, {
       "character": "て",
-      "romaji": "TE",
-      "checked": false
+      "romaji": "TE"
     }, {
       "character": "と",
-      "romaji": "TO",
-      "checked": false
+      "romaji": "TO"
     }
     ],
     [
       {
         "character": "な",
-        "romaji": "NA",
-        "checked": false
+        "romaji": "NA"
       }, {
       "character": "に",
-      "romaji": "NI",
-      "checked": false
+      "romaji": "NI"
     }, {
       "character": "ぬ",
-      "romaji": "NU",
-      "checked": false
+      "romaji": "NU"
     }, {
       "character": "ね",
       "romaji": "NE",

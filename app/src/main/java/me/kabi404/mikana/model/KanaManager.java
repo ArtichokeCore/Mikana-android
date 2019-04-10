@@ -13,15 +13,9 @@ import java.util.Random;
 
 public final class KanaManager {
 
-    private static final String HIRAGANA_ATTR = "hiragana";
-    private static final String KATAKANA_ATTR = "katakana";
-
-    private static final String ROMAJI_ATTR = "romaji";
-    private static final String JAPANESE_KANA_ATTR = "character";
-
     private static final int ROW_FIRST_KANA_INDEX = 0;
-    private static final boolean WITH_REPETITION = true;
-    private static final boolean WITHOUT_REPETITION = false;
+    public static final boolean WITH_REPETITION = true;
+    public static final boolean WITHOUT_REPETITION = false;
 
     private Kana currentKana;
 
@@ -59,8 +53,8 @@ public final class KanaManager {
         String json = new String(buffer, "UTF-8");
         JSONObject allJSONData = new JSONObject(json);
 
-        parseSyllabary(allJSONData.getJSONArray(HIRAGANA_ATTR), Syllabary.HIRAGANA);
-        parseSyllabary(allJSONData.getJSONArray(KATAKANA_ATTR), Syllabary.KATAKANA);
+        parseSyllabary(allJSONData.getJSONArray(Kana.HIRAGANA_ATTR), Syllabary.HIRAGANA);
+        parseSyllabary(allJSONData.getJSONArray(Kana.KATAKANA_ATTR), Syllabary.KATAKANA);
 
     }
 
@@ -71,8 +65,8 @@ public final class KanaManager {
             for(int kanaIndex = 0; kanaIndex < jsonRow.length(); kanaIndex++) {
                 JSONObject jsonKana = jsonRow.getJSONObject(kanaIndex);
                 Kana loadedKana = new Kana(syllabary,
-                        jsonKana.getString(JAPANESE_KANA_ATTR),
-                        jsonKana.getString(ROMAJI_ATTR)
+                        jsonKana.getString(Kana.JAPANESE_KANA_ATTR),
+                        jsonKana.getString(Kana.ROMAJI_ATTR)
                 );
                 kanaRow.add(loadedKana);
             }
@@ -92,11 +86,7 @@ public final class KanaManager {
         setUnusedKanas(new LinkedList<Integer>());
     }
 
-    public void getRandomKana() {
-        getRandomKana(WITH_REPETITION);
-    }
-
-    public Kana getRandomKana(boolean withRepetition) {
+    public void selectRandomKana(boolean withRepetition) {
 
         Random rnd = new Random();
         int randomIndex;
@@ -111,7 +101,7 @@ public final class KanaManager {
             unusedKanas.remove(randomIndex);
         }
 
-        return selectedKanas.get(randomIndex);
+        currentKana = selectedKanas.get(randomIndex);
     }
 
     private void reAddAllUnusedKanas() {
@@ -152,6 +142,10 @@ public final class KanaManager {
 
     public void setUnusedKanas(List<Integer> unusedKanas) {
         this.unusedKanas = unusedKanas;
+    }
+
+    public Kana getCurrentKana() {
+        return currentKana;
     }
 
 }

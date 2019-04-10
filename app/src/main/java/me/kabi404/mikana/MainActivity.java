@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -17,6 +18,7 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import me.kabi404.mikana.model.Kana;
 import me.kabi404.mikana.model.KanaManager;
 import me.kabi404.mikana.model.Syllabary;
 
@@ -27,7 +29,8 @@ public class MainActivity extends AppCompatActivity
 
     private KanaManager kanaManager;
 
-
+    private TextView kanaView;
+    private TextView answerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,9 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        kanaView = findViewById(R.id.kanaView);
+        answerView = findViewById(R.id.answerView);
 
         try {
             InputStream syllabariesStream = getAssets().open(SYLLABARIES_FILE_NAME);
@@ -62,15 +68,13 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onInfoPressed(View view) {
-        Toast toast = Toast.makeText(this.getApplicationContext(), "Info", Toast.LENGTH_SHORT);
-        toast.show();
+        answerView.setText(kanaManager.getCurrentKana().getRomaji());
     }
 
     public void onNextPressed(View view) {
-        Toast toast = Toast.makeText(this.getApplicationContext(), kanaManager.getRandomKana(false).getKanaChar(), Toast.LENGTH_SHORT);
-        toast.show();
-
-
+        answerView.setText("");
+        kanaManager.selectRandomKana(KanaManager.WITH_REPETITION);
+        kanaView.setText(kanaManager.getCurrentKana().getKanaChar());
     }
 
     @Override
