@@ -12,8 +12,11 @@ import java.util.List;
 import me.kabi404.mikana.R;
 import me.kabi404.mikana.model.Kana;
 import me.kabi404.mikana.model.KanaManager;
+import me.kabi404.mikana.model.Syllabary;
 
 public final class KanaRowsAdapter extends BaseAdapter {
+
+    private static final int KANA_COLUMN_NUMBER = 5;
 
     private static LayoutInflater inflater = null;
 
@@ -28,12 +31,12 @@ public final class KanaRowsAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return kanaManager.getKanaRows().size();
+        return kanaManager.getCurrentSyllabaryRows().size();
     }
 
     @Override
     public Object getItem(int i) {
-        return kanaManager.getSelectedKanas().get(i);
+        return kanaManager.getCurrentSyllabaryRows().get(i);
     }
 
     @Override
@@ -43,15 +46,31 @@ public final class KanaRowsAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View convertView, ViewGroup viewGroup) {
-        View v = convertView;
-        v = inflater.inflate(R.layout.kana_row_select, null);
 
-        List dir = kanaManager.getKanaRows().get(i);
+        List<Kana> kanaRow = kanaManager.getCurrentSyllabaryRows().get(i);
 
-        CheckBox check1 = v.findViewById(R.id.check1);
-        check1.setText("hola");
+        if(kanaRow.get(0).getSyllabary() == kanaManager.getCurrentSyllabary()) {
+            convertView = inflater.inflate(R.layout.kana_row_select, null);
 
-        return v;
+            CheckBox checks[] = new CheckBox[KANA_COLUMN_NUMBER];
+
+            checks[0] = convertView.findViewById(R.id.check1);
+            checks[1] = convertView.findViewById(R.id.check2);
+            checks[2] = convertView.findViewById(R.id.check3);
+            checks[3] = convertView.findViewById(R.id.check4);
+            checks[4] = convertView.findViewById(R.id.check5);
+
+            for(int column = 0; column < checks.length; column++) {
+                if(kanaRow.size() > column) {
+                    checks[column].setText(kanaRow.get(column).getKanaChar());
+                } else {
+                    checks[column].setVisibility(View.GONE);
+                }
+            }
+
+        }
+
+        return convertView;
     }
 
     public static LayoutInflater getInflater() {

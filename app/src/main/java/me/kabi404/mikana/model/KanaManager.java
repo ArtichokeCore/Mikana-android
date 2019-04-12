@@ -14,12 +14,13 @@ import java.util.Random;
 public final class KanaManager {
 
     private static final int ROW_FIRST_KANA_INDEX = 0;
+
     public static final boolean WITH_REPETITION = true;
     public static final boolean WITHOUT_REPETITION = false;
 
     private Kana currentKana;
 
-    private List<List<Kana>> kanaRows;
+    private List<List<Kana>>[] kanaRows;
     private Syllabary currentSyllabary;
 
     private List<Kana> selectedKanas;
@@ -28,7 +29,7 @@ public final class KanaManager {
     private static KanaManager singleton;
 
     private KanaManager(InputStream kanaStream) throws IOException, JSONException {
-        setKanaRows(new ArrayList<List<Kana>>());
+        setKanaRows(new ArrayList[2]);
         setCurrentSyllabary(Syllabary.HIRAGANA);
         setSelectedKanas(new ArrayList<Kana>());
         setUnusedKanas(new LinkedList<Integer>());
@@ -74,7 +75,7 @@ public final class KanaManager {
                 );
                 kanaRow.add(loadedKana);
             }
-            this.kanaRows.add(kanaRow);
+            this.kanaRows[syllabary.ordinal()].add(kanaRow);
         }
     }
 
@@ -82,9 +83,8 @@ public final class KanaManager {
 
         setSelectedKanas(new ArrayList<Kana>());
 
-        for(int rowIndex = 0; rowIndex < this.kanaRows.size(); rowIndex++) {
-            if(kanaRows.get(rowIndex).get(ROW_FIRST_KANA_INDEX).getSyllabary() == syllabary)
-                selectedKanas.addAll(kanaRows.get(rowIndex));
+        for(int rowIndex = 0; rowIndex < this.kanaRows[syllabary.ordinal()].size(); rowIndex++) {
+                selectedKanas.addAll(kanaRows[syllabary.ordinal()].get(rowIndex));
         }
 
         setUnusedKanas(new LinkedList<Integer>());
@@ -116,11 +116,18 @@ public final class KanaManager {
 
     // Getters & Setters
 
-    public List<List<Kana>> getKanaRows() {
+    public List<List<Kana>>[] getKanaRows() {
         return kanaRows;
     }
 
-    public void setKanaRows(List<List<Kana>> kanaRows) {
+    public List<List<Kana>> getCurrentSyllabaryRows() {
+        return kanaRows[currentSyllabary.ordinal()];
+    }
+
+    public void setKanaRows(List<List<Kana>>[] kanaRows) {
+        for(int i = 0; i < kanaRows.length; i++) {
+            kanaRows[i] = new ArrayList<List<Kana>>();
+        }
         this.kanaRows = kanaRows;
     }
 
