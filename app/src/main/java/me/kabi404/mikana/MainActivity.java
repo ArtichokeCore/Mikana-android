@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import me.kabi404.mikana.model.KanaManager;
-import me.kabi404.mikana.model.Syllabary;
 import me.kabi404.mikana.score.Score;
 
 public final class MainActivity extends AppCompatActivity
@@ -69,7 +68,7 @@ public final class MainActivity extends AppCompatActivity
         }
 
         if(kanaManager.getSelectedKanas().isEmpty())
-            kanaManager.selectAllSyllabary(kanaManager.getCurrentSyllabary());
+            kanaManager.selectFirstRow();
     }
 
     public void onSelectPressed(View view) {

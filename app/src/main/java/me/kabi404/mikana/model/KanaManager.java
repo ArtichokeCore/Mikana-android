@@ -90,6 +90,15 @@ public final class KanaManager {
         setUnusedKanas(new LinkedList<Integer>());
     }
 
+    public void selectFirstRow() {
+
+        setSelectedKanas(new ArrayList<Kana>());
+
+        selectedKanas.addAll(kanaRows[currentSyllabary.ordinal()].get(ROW_FIRST_KANA_INDEX));
+
+        setUnusedKanas(new LinkedList<Integer>());
+    }
+
     public void selectRandomKana(boolean withRepetition) {
 
         Random rnd = new Random();

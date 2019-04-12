@@ -63,6 +63,9 @@ public final class KanaRowsAdapter extends BaseAdapter {
             for(int column = 0; column < checks.length; column++) {
                 if(kanaRow.size() > column) {
                     checks[column].setText(kanaRow.get(column).getKanaChar());
+                    if(kanaRow.get(column).getSyllabary() == kanaManager.getCurrentSyllabary() &&
+                            kanaManager.getSelectedKanas().contains(kanaRow.get(column)))
+                        checks[column].setChecked(true);
                 } else {
                     checks[column].setVisibility(View.INVISIBLE);
                 }

@@ -9,7 +9,6 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.RadioButton;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -67,7 +66,6 @@ public class SelectActivity extends AppCompatActivity {
                     kanaManager.getSelectedKanas().add(row.get(columnIndex));
                 }
             }
-
         }
 
         Intent intent = new Intent(this, MainActivity.class);
