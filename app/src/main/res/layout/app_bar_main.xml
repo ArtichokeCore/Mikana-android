@@ -25,13 +25,25 @@
         layout="@layout/content_main" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/infoButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:onClick="onInfoPressed"
         app:backgroundTint="@color/colorAccent"
+        app:srcCompat="@android:drawable/ic_menu_help" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/settingsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:onClick="onSelectPressed"
+        app:backgroundTint="@color/colorAccent"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="left|bottom"
         app:srcCompat="@android:drawable/ic_menu_help" />
 
 </android.support.design.widget.CoordinatorLayout>

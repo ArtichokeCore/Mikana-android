@@ -43,6 +43,10 @@ public final class KanaManager {
         return singleton;
     }
 
+    public static KanaManager getInstance() {
+        return singleton;
+    }
+
     private void loadDataFromJSON(InputStream kanaStream) throws IOException, JSONException {
 
         int streamSize = kanaStream.available();

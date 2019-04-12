@@ -1,5 +1,6 @@
 package me.kabi404.mikana;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -69,9 +70,9 @@ public final class MainActivity extends AppCompatActivity
 
     }
 
-    public void onSettingsPressed(View view) {
-        Toast toast = Toast.makeText(this.getApplicationContext(), "Settings", Toast.LENGTH_SHORT);
-        toast.show();
+    public void onSelectPressed(View view) {
+        Intent intent = new Intent(this, SelectActivity.class);
+        startActivity(intent);
     }
 
     public void onInfoPressed(View view) {
