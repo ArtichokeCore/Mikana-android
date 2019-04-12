@@ -12,14 +12,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONException;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-import me.kabi404.mikana.model.Kana;
 import me.kabi404.mikana.model.KanaManager;
 import me.kabi404.mikana.model.Syllabary;
 import me.kabi404.mikana.score.Score;
@@ -59,15 +57,19 @@ public final class MainActivity extends AppCompatActivity
         score = Score.getInstance();
         scoreView.setText(score.toString());
 
-        try {
-            InputStream syllabariesStream = getAssets().open(SYLLABARIES_FILE_NAME);
-            kanaManager = KanaManager.getInstance(syllabariesStream);
-        } catch (IOException | JSONException e) {
-            e.printStackTrace();
+        kanaManager = KanaManager.getInstance();
+
+        if(kanaManager == null) {
+            try {
+                InputStream syllabariesStream = getAssets().open(SYLLABARIES_FILE_NAME);
+                kanaManager = KanaManager.getInstance(syllabariesStream);
+            } catch (IOException | JSONException e) {
+                e.printStackTrace();
+            }
         }
 
-        kanaManager.selectAllSyllabary(Syllabary.HIRAGANA);
-
+        if(kanaManager.getSelectedKanas().isEmpty())
+            kanaManager.selectAllSyllabary(kanaManager.getCurrentSyllabary());
     }
 
     public void onSelectPressed(View view) {

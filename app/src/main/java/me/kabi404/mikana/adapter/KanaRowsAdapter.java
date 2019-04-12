@@ -64,7 +64,7 @@ public final class KanaRowsAdapter extends BaseAdapter {
                 if(kanaRow.size() > column) {
                     checks[column].setText(kanaRow.get(column).getKanaChar());
                 } else {
-                    checks[column].setVisibility(View.GONE);
+                    checks[column].setVisibility(View.INVISIBLE);
                 }
             }
 

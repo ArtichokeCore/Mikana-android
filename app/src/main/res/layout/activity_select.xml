@@ -52,8 +52,15 @@
         <ListView
             android:id="@+id/kanaRows"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="500dp"
             android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/updateButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onUpdatePressed"
+            android:text="UPDATE" />
 
     </LinearLayout>
 
