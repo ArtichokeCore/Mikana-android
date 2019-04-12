@@ -8,7 +8,7 @@ public final class Score {
     private static Score singleton;
 
     private Score() {
-        nextButton = 0;
+        nextButton = -1;
         infoButton = 0;
     }
 
@@ -45,6 +45,11 @@ public final class Score {
 
     public void setInfoButton(int infoButton) {
         this.infoButton = infoButton;
+    }
+
+    public void restart() {
+        nextButton = -1;
+        infoButton = 0;
     }
 
     public String toString() {

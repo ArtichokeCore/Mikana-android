@@ -38,6 +38,7 @@ public final class MainActivity extends AppCompatActivity {
         scoreView = findViewById(R.id.scoreView);
 
         score = Score.getInstance();
+        score.restart();
         scoreView.setText(score.toString());
 
         kanaManager = KanaManager.getInstance();
@@ -53,6 +54,8 @@ public final class MainActivity extends AppCompatActivity {
 
         if(kanaManager.getSelectedKanas().isEmpty())
             kanaManager.selectFirstRow();
+
+        onNextPressed(null);
     }
 
     public void onSelectPressed(View view) {
