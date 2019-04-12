@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -25,6 +26,7 @@ public final class MainActivity extends AppCompatActivity {
     private TextView kanaView;
     private TextView answerView;
     private TextView scoreView;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public final class MainActivity extends AppCompatActivity {
         kanaView = findViewById(R.id.kanaView);
         answerView = findViewById(R.id.answerView);
         scoreView = findViewById(R.id.scoreView);
+        progressBar = findViewById(R.id.progressBar);
 
         score = Score.getInstance();
         score.restart();
@@ -68,6 +71,8 @@ public final class MainActivity extends AppCompatActivity {
 
         score.infoButtonPressed();
         scoreView.setText(score.toString());
+
+        progressBar.setProgress(score.getProgress());
     }
 
     public void onNextPressed(View view) {
@@ -77,6 +82,8 @@ public final class MainActivity extends AppCompatActivity {
 
         score.nextButtonPressed();
         scoreView.setText(score.toString());
+
+        progressBar.setProgress(score.getProgress());
     }
 
 }

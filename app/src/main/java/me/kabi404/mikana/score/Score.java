@@ -52,6 +52,12 @@ public final class Score {
         infoButton = 0;
     }
 
+    public int getProgress() {
+        int total = nextButton;
+        int success = nextButton - infoButton;
+        return total == 0 ? 0 : (100 * success) / total;
+    }
+
     public String toString() {
         StringBuilder builder = new StringBuilder();
 
