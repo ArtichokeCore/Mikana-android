@@ -27,10 +27,6 @@ public final class Score {
         infoButton++;
     }
 
-    public float getBalance() {
-        return getNextButton() / ((float)infoButton + 1);
-    }
-
     public int getScore() {
         return nextButton - (infoButton * 2);
     }
@@ -56,7 +52,6 @@ public final class Score {
 
         builder.append("Next: ").append(getNextButton()).append("\n");
         builder.append("Show: ").append(getInfoButton()).append("\n");
-        builder.append("Balance: ").append(getBalance()).append("\n");
         builder.append("Score: ").append(getScore());
 
         return builder.toString();

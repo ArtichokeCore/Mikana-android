@@ -28,7 +28,7 @@
             android:id="@+id/kanaView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="あ"
+            android:text="@string/Akana"
             android:textAlignment="center"
             android:textAppearance="@android:style/TextAppearance.Material.Menu"
             android:textSize="175sp" />
@@ -37,7 +37,7 @@
             android:id="@+id/answerView"
             android:layout_width="match_parent"
             android:layout_height="79dp"
-            android:text="A"
+            android:text="@string/a"
             android:textAlignment="center"
             android:textSize="50sp" />
 
@@ -51,7 +51,6 @@
             android:id="@+id/scoreView"
             android:layout_width="match_parent"
             android:layout_height="197dp"
-            android:text="Next: 1\nShow:1\nBalance: 1\nScore: 0"
             android:textAlignment="center"
             android:textSize="36sp" />
 
