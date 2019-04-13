@@ -60,9 +60,13 @@ public final class Score {
     }
 
     public int getProgress() {
+        return getProgress(100);
+    }
+
+    public int getProgress(int maxValue) {
         int total = nextButton;
         int success = nextButton - infoButton;
-        return total == 0 ? 0 : (100 * success) / total;
+        return total == 0 ? 0 : (maxValue * success) / total;
     }
 
     public String toString() {

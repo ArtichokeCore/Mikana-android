@@ -78,7 +78,7 @@ public final class MainActivity extends AppCompatActivity {
 
     public void onNextPressed(View view) {
         answerView.setText("");
-        kanaManager.selectRandomKana(KanaManager.WITH_REPETITION);
+        kanaManager.selectRandomKana(KanaManager.WITHOUT_REPETITION);
         kanaView.setText(kanaManager.getCurrentKana().getKanaChar());
 
         score.nextButtonPressed();

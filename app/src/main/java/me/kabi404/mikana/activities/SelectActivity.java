@@ -13,7 +13,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import me.kabi404.mikana.R;
-import me.kabi404.mikana.activities.MainActivity;
 import me.kabi404.mikana.adapter.KanaRowsAdapter;
 import me.kabi404.mikana.model.Kana;
 import me.kabi404.mikana.model.KanaManager;
@@ -69,6 +68,8 @@ public class SelectActivity extends AppCompatActivity {
                 }
             }
         }
+
+        kanaManager.getUnusedKanas().clear();
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

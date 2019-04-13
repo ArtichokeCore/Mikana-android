@@ -19,12 +19,13 @@ public final class KanaManager {
     public static final boolean WITHOUT_REPETITION = false;
 
     private Kana currentKana;
+    private Kana lastKana;
 
     private List<List<Kana>>[] kanaRows;
     private Syllabary currentSyllabary;
 
     private List<Kana> selectedKanas;
-    private List<Integer> unusedKanas;
+    private List<Kana> unusedKanas;
 
     private static KanaManager singleton;
 
@@ -32,7 +33,7 @@ public final class KanaManager {
         setKanaRows(new ArrayList[2]);
         setCurrentSyllabary(Syllabary.HIRAGANA);
         setSelectedKanas(new ArrayList<Kana>());
-        setUnusedKanas(new LinkedList<Integer>());
+        setUnusedKanas(new LinkedList<Kana>());
 
         loadDataFromJSON(kanaStream);
     }
@@ -84,10 +85,10 @@ public final class KanaManager {
         setSelectedKanas(new ArrayList<Kana>());
 
         for(int rowIndex = 0; rowIndex < this.kanaRows[syllabary.ordinal()].size(); rowIndex++) {
-                selectedKanas.addAll(kanaRows[syllabary.ordinal()].get(rowIndex));
+            selectedKanas.addAll(kanaRows[syllabary.ordinal()].get(rowIndex));
         }
 
-        setUnusedKanas(new LinkedList<Integer>());
+        setUnusedKanas(new LinkedList<Kana>());
     }
 
     public void selectFirstRow() {
@@ -96,7 +97,7 @@ public final class KanaManager {
 
         selectedKanas.addAll(kanaRows[currentSyllabary.ordinal()].get(ROW_FIRST_KANA_INDEX));
 
-        setUnusedKanas(new LinkedList<Integer>());
+        setUnusedKanas(new LinkedList<Kana>());
     }
 
     public void selectRandomKana(boolean withRepetition) {
@@ -106,21 +107,26 @@ public final class KanaManager {
 
         if(withRepetition == WITH_REPETITION) {
             randomIndex = rnd.nextInt(selectedKanas.size());
+            lastKana = currentKana;
+            currentKana = selectedKanas.get(randomIndex);
         } else {
             if(unusedKanas.isEmpty())
                 reAddAllUnusedKanas();
+            
+            lastKana = currentKana;
 
-            randomIndex = rnd.nextInt(unusedKanas.size());
+            do {
+                randomIndex = rnd.nextInt(unusedKanas.size());
+                currentKana = unusedKanas.get(randomIndex);
+            } while (lastKana == currentKana && unusedKanas.size() > 1);
+
             unusedKanas.remove(randomIndex);
         }
-
-        currentKana = selectedKanas.get(randomIndex);
     }
 
     private void reAddAllUnusedKanas() {
-        for(int i = 0; i < selectedKanas.size(); i++) {
-            unusedKanas.add(i);
-        }
+        unusedKanas.clear();
+        unusedKanas.addAll(selectedKanas);
     }
 
     // Getters & Setters
@@ -156,11 +162,11 @@ public final class KanaManager {
         this.selectedKanas = selectedKanas;
     }
 
-    public List<Integer> getUnusedKanas() {
+    public List<Kana> getUnusedKanas() {
         return unusedKanas;
     }
 
-    public void setUnusedKanas(List<Integer> unusedKanas) {
+    public void setUnusedKanas(List<Kana> unusedKanas) {
         this.unusedKanas = unusedKanas;
     }
 
