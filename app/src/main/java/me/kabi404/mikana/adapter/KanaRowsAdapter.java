@@ -12,7 +12,6 @@ import java.util.List;
 import me.kabi404.mikana.R;
 import me.kabi404.mikana.model.Kana;
 import me.kabi404.mikana.model.KanaManager;
-import me.kabi404.mikana.model.Syllabary;
 
 public final class KanaRowsAdapter extends BaseAdapter {
 

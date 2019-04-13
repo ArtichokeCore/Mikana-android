@@ -4,12 +4,14 @@ public final class Score {
 
     private int nextButton;
     private int infoButton;
+    private boolean hasFailed;
 
     private static Score singleton;
 
     private Score() {
         nextButton = -1;
         infoButton = 0;
+        hasFailed = false;
     }
 
     public static Score getInstance() {
@@ -20,15 +22,19 @@ public final class Score {
     }
 
     public void nextButtonPressed(){
-        nextButton++;
+        if(!hasFailed)
+            nextButton++;
+        else
+            hasFailed = false;
     }
 
     public void infoButtonPressed() {
         infoButton++;
+        hasFailed = true;
     }
 
     public int getScore() {
-        return nextButton - (infoButton * 2);
+        return nextButton - infoButton;
     }
 
     public int getNextButton() {
@@ -50,6 +56,7 @@ public final class Score {
     public void restart() {
         nextButton = -1;
         infoButton = 0;
+        hasFailed = false;
     }
 
     public int getProgress() {
@@ -61,8 +68,8 @@ public final class Score {
     public String toString() {
         StringBuilder builder = new StringBuilder();
 
-        builder.append("Next: ").append(getNextButton()).append("\n");
-        builder.append("Show: ").append(getInfoButton()).append("\n");
+        builder.append("Success: ").append(getNextButton()).append("\n");
+        builder.append("Failed: ").append(getInfoButton()).append("\n");
         builder.append("Score: ").append(getScore());
 
         return builder.toString();

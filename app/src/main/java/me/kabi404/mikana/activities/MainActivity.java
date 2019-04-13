@@ -1,4 +1,4 @@
-package me.kabi404.mikana;
+package me.kabi404.mikana.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import me.kabi404.mikana.R;
 import me.kabi404.mikana.model.KanaManager;
 import me.kabi404.mikana.score.Score;
 

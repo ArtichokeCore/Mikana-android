@@ -1,4 +1,4 @@
-package me.kabi404.mikana;
+package me.kabi404.mikana.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import android.widget.RadioButton;
 import java.util.LinkedList;
 import java.util.List;
 
+import me.kabi404.mikana.R;
+import me.kabi404.mikana.activities.MainActivity;
 import me.kabi404.mikana.adapter.KanaRowsAdapter;
 import me.kabi404.mikana.model.Kana;
 import me.kabi404.mikana.model.KanaManager;
