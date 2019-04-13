@@ -32,7 +32,7 @@ public final class Score {
     }
 
     public int getNextButton() {
-        return nextButton - infoButton;
+        return nextButton;
     }
 
     public void setNextButton(int nextButton) {
