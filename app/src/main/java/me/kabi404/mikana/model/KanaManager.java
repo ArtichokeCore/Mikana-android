@@ -112,7 +112,7 @@ public final class KanaManager {
         } else {
             if(unusedKanas.isEmpty())
                 reAddAllUnusedKanas();
-            
+
             lastKana = currentKana;
 
             do {

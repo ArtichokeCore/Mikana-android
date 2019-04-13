@@ -29,7 +29,9 @@ public final class Score {
     }
 
     public void infoButtonPressed() {
-        infoButton++;
+        if(!hasFailed)
+            infoButton++;
+
         hasFailed = true;
     }
 
