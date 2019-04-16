@@ -9,11 +9,13 @@ public final class Score {
     private static Score singleton;
 
     private Score() {
-        nextButton = -1;
-        infoButton = 0;
-        hasFailed = false;
+        restart();
     }
 
+    /**
+     * Singleton call method. Return Score or create if it doesn't exist.
+     * @return Score singleton reference.
+     */
     public static Score getInstance() {
         if(Score.singleton == null)
             Score.singleton = new Score();
@@ -21,6 +23,9 @@ public final class Score {
         return Score.singleton;
     }
 
+    /**
+     * Call this method when user press "next" button. Adds 1 point only if last action wasn't failed (info pressed).
+     */
     public void nextButtonPressed(){
         if(!hasFailed)
             nextButton++;
@@ -28,6 +33,9 @@ public final class Score {
             hasFailed = false;
     }
 
+    /**
+     * Call this method when user press "info" button. Quits 1 point only if last action wasn't failed (info pressed).
+     */
     public void infoButtonPressed() {
         if(!hasFailed)
             infoButton++;
@@ -35,6 +43,9 @@ public final class Score {
         hasFailed = true;
     }
 
+    /**
+     * @return Success point - Fail points.
+     */
     public int getScore() {
         return nextButton - infoButton;
     }
@@ -43,34 +54,42 @@ public final class Score {
         return nextButton;
     }
 
-    public void setNextButton(int nextButton) {
-        this.nextButton = nextButton;
-    }
-
     public int getInfoButton() {
         return infoButton;
     }
 
-    public void setInfoButton(int infoButton) {
-        this.infoButton = infoButton;
-    }
-
+    /**
+     * Restart all score values.
+     */
     public void restart() {
-        nextButton = -1;
+        nextButton = 0;
         infoButton = 0;
         hasFailed = false;
     }
 
+    /**
+     * Calculate progress between 0 and 100.
+     * @return int score number between 0 and 100.
+     */
     public int getProgress() {
         return getProgress(100);
     }
 
+    /**
+     * Singleton call method. Return Score or create if it doesn't exist.
+     * @param maxValue max posible value of score representation.
+     * @return int score number between 0 and specified value.
+     */
     public int getProgress(int maxValue) {
         int total = nextButton;
         int success = nextButton - infoButton;
         return total == 0 ? 0 : (maxValue * success) / total;
     }
 
+    /**
+     * Generate read-friendly score resume.
+     * @return String score data.
+     */
     public String toString() {
         StringBuilder builder = new StringBuilder();
 

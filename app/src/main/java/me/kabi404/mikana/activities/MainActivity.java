@@ -41,9 +41,6 @@ public final class MainActivity extends AppCompatActivity {
         setProgressBar((ProgressBar) findViewById(R.id.progressBar));
 
         score = Score.getInstance();
-        score.restart();
-
-        getScoreView().setText(score.toString());
 
         kanaManager = KanaManager.getInstance();
 
@@ -60,6 +57,9 @@ public final class MainActivity extends AppCompatActivity {
             kanaManager.selectFirstRow();
 
         onNextPressed(null);
+
+        score.restart();
+        getScoreView().setText(score.toString());
     }
 
     public void onSelectPressed(View view) {
@@ -80,7 +80,7 @@ public final class MainActivity extends AppCompatActivity {
     public void onNextPressed(View view) {
         getAnswerView().setText(EMPTY);
         kanaManager.selectRandomKana(KanaManager.WITHOUT_REPETITION);
-        kanaView.setText(kanaManager.getCurrentKana().getKanaChar());
+        getKanaView().setText(kanaManager.getCurrentKana().getKanaChar());
 
         score.nextButtonPressed();
         getScoreView().setText(score.toString());
