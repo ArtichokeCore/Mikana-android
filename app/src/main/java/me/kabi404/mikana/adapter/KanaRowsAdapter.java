@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 
-import java.util.List;
-
 import me.kabi404.mikana.R;
 import me.kabi404.mikana.model.Kana;
 import me.kabi404.mikana.model.KanaManager;

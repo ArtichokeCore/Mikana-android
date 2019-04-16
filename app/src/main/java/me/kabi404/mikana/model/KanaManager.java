@@ -33,11 +33,12 @@ public final class KanaManager {
      */
     private KanaManager(InputStream kanaStream) throws IOException, JSONException {
         setKanaRows(new ArrayList[2]);
-        setCurrentSyllabary(Syllabary.HIRAGANA);
+
         setSelectedKanas(new ArrayList<Kana>());
         setUnusedKanas(new LinkedList<Kana>());
-
         loadDataFromJSON(kanaStream);
+
+        setCurrentSyllabary(Syllabary.HIRAGANA);
     }
 
     /**
@@ -165,9 +166,7 @@ public final class KanaManager {
     }
 
     public boolean isSelected(int rowIndex, int columnIndex) {
-        return isSelected(getKanaRows()[getCurrentSyllabaryOrd()]
-                .get(rowIndex).get(columnIndex)
-        );
+        return isSelected(getKana(rowIndex, columnIndex));
     }
 
     public boolean exist(int rowIndex, int columnIndex) {

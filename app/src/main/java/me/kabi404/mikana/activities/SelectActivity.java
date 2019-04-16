@@ -14,12 +14,13 @@ import me.kabi404.mikana.adapter.KanaRowsAdapter;
 import me.kabi404.mikana.model.KanaManager;
 import me.kabi404.mikana.model.Syllabary;
 
-public class SelectActivity extends AppCompatActivity {
+public final class SelectActivity extends AppCompatActivity {
 
     private KanaManager kanaManager;
-    private ListView kanaRows;
+
+    private ListView kanaRowsView;
     private RadioButton hiraganaRadio, katakanaRadio;
-    KanaRowsAdapter adapter;
+    private KanaRowsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,22 +31,22 @@ public class SelectActivity extends AppCompatActivity {
 
         kanaManager = KanaManager.getInstance();
 
-        kanaRows = (ListView) findViewById(R.id.kanaRows);
-        adapter = new KanaRowsAdapter(this);
-        kanaRows.setAdapter(adapter);
+        setKanaRowsView((ListView) findViewById(R.id.kanaRows));
+        setAdapter(new KanaRowsAdapter(this));
 
-        hiraganaRadio = (RadioButton) findViewById(R.id.hiraganaRadio);
-        katakanaRadio = (RadioButton) findViewById(R.id.katakanaRadio);
+        setHiraganaRadio((RadioButton) findViewById(R.id.hiraganaRadio));
+        setKatakanaRadio((RadioButton) findViewById(R.id.katakanaRadio));
+
     }
 
     public void onUpdatePressed(View view) {
 
-        Syllabary currentSyllabary = hiraganaRadio.isChecked() ? Syllabary.HIRAGANA : Syllabary.KATAKANA;
+        Syllabary currentSyllabary = getHiraganaRadio().isChecked() ? Syllabary.HIRAGANA : Syllabary.KATAKANA;
         kanaManager.setCurrentSyllabary(currentSyllabary);
         kanaManager.unselectKanas();
 
-        for(int rowIndex = 0; rowIndex < kanaRows.getChildCount(); rowIndex++) {
-            View rowView = kanaRows.getChildAt(rowIndex);
+        for(int rowIndex = 0; rowIndex < getKanaRowsView().getChildCount(); rowIndex++) {
+            View rowView = getKanaRowsView().getChildAt(rowIndex);
 
             CheckBox[] checks = new CheckBox[5];
 
@@ -76,4 +77,38 @@ public class SelectActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+    // Getters & Setters
+
+    public ListView getKanaRowsView() {
+        return kanaRowsView;
+    }
+
+    public void setKanaRowsView(ListView kanaRowsView) {
+        this.kanaRowsView = kanaRowsView;
+    }
+
+    public RadioButton getHiraganaRadio() {
+        return hiraganaRadio;
+    }
+
+    public void setHiraganaRadio(RadioButton hiraganaRadio) {
+        this.hiraganaRadio = hiraganaRadio;
+    }
+
+    public RadioButton getKatakanaRadio() {
+        return katakanaRadio;
+    }
+
+    public void setKatakanaRadio(RadioButton katakanaRadio) {
+        this.katakanaRadio = katakanaRadio;
+    }
+
+    public KanaRowsAdapter getAdapter() {
+        return adapter;
+    }
+
+    public void setAdapter(KanaRowsAdapter adapter) {
+        this.adapter = adapter;
+        getKanaRowsView().setAdapter(adapter);
+    }
 }

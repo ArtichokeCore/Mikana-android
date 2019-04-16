@@ -20,13 +20,12 @@ import me.kabi404.mikana.score.Score;
 public final class MainActivity extends AppCompatActivity {
 
     private static final String SYLLABARIES_FILE_NAME = "syllabaries.json";
+    private static final String EMPTY = "";
 
     private KanaManager kanaManager;
     private Score score;
 
-    private TextView kanaView;
-    private TextView answerView;
-    private TextView scoreView;
+    private TextView kanaView, answerView, scoreView;
     private ProgressBar progressBar;
 
     @Override
@@ -36,14 +35,15 @@ public final class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        kanaView = findViewById(R.id.kanaView);
-        answerView = findViewById(R.id.answerView);
-        scoreView = findViewById(R.id.scoreView);
-        progressBar = findViewById(R.id.progressBar);
+        setKanaView((TextView) findViewById(R.id.kanaView));
+        setAnswerView((TextView) findViewById(R.id.answerView));
+        setScoreView((TextView) findViewById(R.id.scoreView));
+        setProgressBar((ProgressBar) findViewById(R.id.progressBar));
 
         score = Score.getInstance();
         score.restart();
-        scoreView.setText(score.toString());
+
+        getScoreView().setText(score.toString());
 
         kanaManager = KanaManager.getInstance();
 
@@ -68,23 +68,57 @@ public final class MainActivity extends AppCompatActivity {
     }
 
     public void onInfoPressed(View view) {
-        answerView.setText(kanaManager.getCurrentKana().getRomaji());
 
         score.infoButtonPressed();
-        scoreView.setText(score.toString());
 
-        progressBar.setProgress(score.getProgress());
+        getScoreView().setText(score.toString());
+        getProgressBar().setProgress(score.getProgress());
+
+        getAnswerView().setText(kanaManager.getCurrentKana().getRomaji());
     }
 
     public void onNextPressed(View view) {
-        answerView.setText("");
+        getAnswerView().setText(EMPTY);
         kanaManager.selectRandomKana(KanaManager.WITHOUT_REPETITION);
         kanaView.setText(kanaManager.getCurrentKana().getKanaChar());
 
         score.nextButtonPressed();
-        scoreView.setText(score.toString());
+        getScoreView().setText(score.toString());
 
-        progressBar.setProgress(score.getProgress());
+        getProgressBar().setProgress(score.getProgress());
     }
 
+    // Getters & Setters
+
+    public TextView getKanaView() {
+        return kanaView;
+    }
+
+    public void setKanaView(TextView kanaView) {
+        this.kanaView = kanaView;
+    }
+
+    public TextView getAnswerView() {
+        return answerView;
+    }
+
+    public void setAnswerView(TextView answerView) {
+        this.answerView = answerView;
+    }
+
+    public TextView getScoreView() {
+        return scoreView;
+    }
+
+    public void setScoreView(TextView scoreView) {
+        this.scoreView = scoreView;
+    }
+
+    public ProgressBar getProgressBar() {
+        return progressBar;
+    }
+
+    public void setProgressBar(ProgressBar progressBar) {
+        this.progressBar = progressBar;
+    }
 }
