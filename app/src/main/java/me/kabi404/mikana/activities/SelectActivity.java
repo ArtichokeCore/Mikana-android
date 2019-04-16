@@ -9,12 +9,8 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.RadioButton;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import me.kabi404.mikana.R;
 import me.kabi404.mikana.adapter.KanaRowsAdapter;
-import me.kabi404.mikana.model.Kana;
 import me.kabi404.mikana.model.KanaManager;
 import me.kabi404.mikana.model.Syllabary;
 
@@ -40,14 +36,13 @@ public class SelectActivity extends AppCompatActivity {
 
         hiraganaRadio = (RadioButton) findViewById(R.id.hiraganaRadio);
         katakanaRadio = (RadioButton) findViewById(R.id.katakanaRadio);
-
     }
 
     public void onUpdatePressed(View view) {
 
         Syllabary currentSyllabary = hiraganaRadio.isChecked() ? Syllabary.HIRAGANA : Syllabary.KATAKANA;
         kanaManager.setCurrentSyllabary(currentSyllabary);
-        kanaManager.setSelectedKanas(new LinkedList<Kana>());
+        kanaManager.unselectKanas();
 
         for(int rowIndex = 0; rowIndex < kanaRows.getChildCount(); rowIndex++) {
             View rowView = kanaRows.getChildAt(rowIndex);
@@ -60,28 +55,24 @@ public class SelectActivity extends AppCompatActivity {
             checks[3] = rowView.findViewById(R.id.check4);
             checks[4] = rowView.findViewById(R.id.check5);
 
-            List<Kana> row = kanaManager.getCurrentSyllabaryRows().get(rowIndex);
-
-            for(int columnIndex = 0; columnIndex < row.size(); columnIndex++) {
+            for(int columnIndex = 0; columnIndex < checks.length; columnIndex++) {
                 if(checks[columnIndex].isChecked()) {
-                    kanaManager.getSelectedKanas().add(row.get(columnIndex));
+                    kanaManager.selectKana(rowIndex, columnIndex);
                 }
             }
         }
-
-        kanaManager.getUnusedKanas().clear();
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
     public void setToHiragana(View view) {
-        KanaManager.getInstance().setCurrentSyllabary(Syllabary.HIRAGANA);
+        kanaManager.setCurrentSyllabary(Syllabary.HIRAGANA);
         adapter.notifyDataSetChanged();
     }
 
     public void setToKatakana(View view) {
-        KanaManager.getInstance().setCurrentSyllabary(Syllabary.KATAKANA);
+        kanaManager.setCurrentSyllabary(Syllabary.KATAKANA);
         adapter.notifyDataSetChanged();
     }
 

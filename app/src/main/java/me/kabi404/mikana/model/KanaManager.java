@@ -155,6 +155,29 @@ public final class KanaManager {
         getUnusedKanas().addAll(getSelectedKanas());
     }
 
+    public void unselectKanas() {
+        getSelectedKanas().clear();
+        getUnusedKanas().clear();
+    }
+
+    public boolean isSelected(Kana kana) {
+        return getSelectedKanas().contains(kana);
+    }
+
+    public boolean isSelected(int rowIndex, int columnIndex) {
+        return isSelected(getKanaRows()[getCurrentSyllabaryOrd()]
+                .get(rowIndex).get(columnIndex)
+        );
+    }
+
+    public boolean exist(int rowIndex, int columnIndex) {
+        return columnIndex < getKanaRows()[getCurrentSyllabaryOrd()].get(rowIndex).size();
+    }
+
+    public Kana getKana(int row, int column) {
+        return getKanaRows()[getCurrentSyllabaryOrd()].get(row).get(column);
+    }
+
     // Getters & Setters
 
     public List<List<Kana>>[] getKanaRows() {
@@ -162,12 +185,12 @@ public final class KanaManager {
     }
 
     public List<List<Kana>> getCurrentSyllabaryRows() {
-        return kanaRows[currentSyllabary.ordinal()];
+        return kanaRows[getCurrentSyllabaryOrd()];
     }
 
-    public void setKanaRows(List<List<Kana>>[] kanaRows) {
+    private void setKanaRows(List<List<Kana>>[] kanaRows) {
         for(int i = 0; i < kanaRows.length; i++) {
-            kanaRows[i] = new ArrayList<List<Kana>>();
+            kanaRows[i] = new ArrayList<>();
         }
         this.kanaRows = kanaRows;
     }
@@ -192,8 +215,14 @@ public final class KanaManager {
         return selectedKanas;
     }
 
-    public void setSelectedKanas(List<Kana> selectedKanas) {
+    private void setSelectedKanas(List<Kana> selectedKanas) {
         this.selectedKanas = selectedKanas;
+    }
+
+    public void selectKana(int rowIndex, int columnIndex) {
+        getSelectedKanas().add(getKanaRows()[getCurrentSyllabaryOrd()]
+                .get(rowIndex).get(columnIndex)
+        );
     }
 
     public List<Kana> getUnusedKanas() {

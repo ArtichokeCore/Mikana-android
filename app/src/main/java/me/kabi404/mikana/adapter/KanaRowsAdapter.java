@@ -44,32 +44,27 @@ public final class KanaRowsAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View convertView, ViewGroup viewGroup) {
+    public View getView(int rowIndex, View convertView, ViewGroup viewGroup) {
 
-        List<Kana> kanaRow = kanaManager.getCurrentSyllabaryRows().get(i);
+        convertView = inflater.inflate(R.layout.kana_row_select, null);
 
-        if(kanaRow.get(0).getSyllabary() == kanaManager.getCurrentSyllabary()) {
-            convertView = inflater.inflate(R.layout.kana_row_select, null);
+        CheckBox checks[] = new CheckBox[KANA_COLUMN_NUMBER];
 
-            CheckBox checks[] = new CheckBox[KANA_COLUMN_NUMBER];
+        checks[0] = convertView.findViewById(R.id.check1);
+        checks[1] = convertView.findViewById(R.id.check2);
+        checks[2] = convertView.findViewById(R.id.check3);
+        checks[3] = convertView.findViewById(R.id.check4);
+        checks[4] = convertView.findViewById(R.id.check5);
 
-            checks[0] = convertView.findViewById(R.id.check1);
-            checks[1] = convertView.findViewById(R.id.check2);
-            checks[2] = convertView.findViewById(R.id.check3);
-            checks[3] = convertView.findViewById(R.id.check4);
-            checks[4] = convertView.findViewById(R.id.check5);
-
-            for(int column = 0; column < checks.length; column++) {
-                if(kanaRow.size() > column) {
-                    checks[column].setText(kanaRow.get(column).getKanaChar());
-                    if(kanaRow.get(column).getSyllabary() == kanaManager.getCurrentSyllabary() &&
-                            kanaManager.getSelectedKanas().contains(kanaRow.get(column)))
-                        checks[column].setChecked(true);
-                } else {
-                    checks[column].setVisibility(View.INVISIBLE);
-                }
+        for(int columnIndex = 0; columnIndex < checks.length; columnIndex++) {
+            if(kanaManager.exist(rowIndex, columnIndex)) {
+                Kana kana = kanaManager.getKana(rowIndex, columnIndex);
+                checks[columnIndex].setText(kana.getKanaChar());
+                if(kanaManager.isSelected(kana))
+                    checks[columnIndex].setChecked(true);
+            } else {
+                checks[columnIndex].setVisibility(View.INVISIBLE);
             }
-
         }
 
         return convertView;

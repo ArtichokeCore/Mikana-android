@@ -21,7 +21,7 @@ public final class Kana {
         return syllabary;
     }
 
-    public void setSyllabary(Syllabary syllabary) {
+    private void setSyllabary(Syllabary syllabary) {
         this.syllabary = syllabary;
     }
 
@@ -29,7 +29,7 @@ public final class Kana {
         return kanaChar;
     }
 
-    public void setKanaChar(String kanaChar) {
+    private void setKanaChar(String kanaChar) {
         this.kanaChar = kanaChar;
     }
 
@@ -37,7 +37,7 @@ public final class Kana {
         return romaji;
     }
 
-    public void setRomaji(String romaji) {
+    private void setRomaji(String romaji) {
         this.romaji = romaji;
     }
 }
