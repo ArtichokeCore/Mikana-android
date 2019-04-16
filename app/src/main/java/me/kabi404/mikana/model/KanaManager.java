@@ -156,25 +156,63 @@ public final class KanaManager {
         getUnusedKanas().addAll(getSelectedKanas());
     }
 
+    /**
+     * Clear selected kanas.
+     */
     public void unselectKanas() {
         getSelectedKanas().clear();
         getUnusedKanas().clear();
     }
 
+    /**
+     * Check if Kana it is included
+     * @param kana to check if it is included as selected kana.
+     * @return boolean This returns true if that kana is included in selected kanas.
+     */
     public boolean isSelected(Kana kana) {
         return getSelectedKanas().contains(kana);
     }
 
-    public boolean isSelected(int rowIndex, int columnIndex) {
-        return isSelected(getKana(rowIndex, columnIndex));
+    /**
+     * Check if Kana it is included
+     * @param row pointer of kanaRows.
+     * @param column pointer of kanaRows.
+     * @return boolean This returns true if referenced kana is included in selected kanas.
+     */
+    public boolean isSelected(int row, int column) {
+        return isSelected(getKana(row, column));
     }
 
-    public boolean exist(int rowIndex, int columnIndex) {
-        return columnIndex < getKanaRows()[getCurrentSyllabaryOrd()].get(rowIndex).size();
+    /**
+     * Check if Kana exist.
+     * @param row pointer of kanaRows.
+     * @param column pointer of kanaRows.
+     * @return boolean This returns true if referenced kana exists.
+     */
+    public boolean exist(int row, int column) {
+        return row < getKanaRows()[getCurrentSyllabaryOrd()].size() &&
+                column < getKanaRows()[getCurrentSyllabaryOrd()].get(row).size();
     }
 
+    /**
+     * Get especific kana from index.
+     * @param row pointer of kanaRows.
+     * @param column pointer of kanaRows.
+     * @return Kana This returns referenced kana.
+     */
     public Kana getKana(int row, int column) {
         return getKanaRows()[getCurrentSyllabaryOrd()].get(row).get(column);
+    }
+
+    /**
+     * Add kana from index to selected kanas
+     * @param row pointer of kanaRows.
+     * @param column pointer of kanaRows.
+     */
+    public void selectKana(int row, int column) {
+        getSelectedKanas().add(getKanaRows()[getCurrentSyllabaryOrd()]
+                .get(row).get(column)
+        );
     }
 
     // Getters & Setters
@@ -216,12 +254,6 @@ public final class KanaManager {
 
     private void setSelectedKanas(List<Kana> selectedKanas) {
         this.selectedKanas = selectedKanas;
-    }
-
-    public void selectKana(int rowIndex, int columnIndex) {
-        getSelectedKanas().add(getKanaRows()[getCurrentSyllabaryOrd()]
-                .get(rowIndex).get(columnIndex)
-        );
     }
 
     public List<Kana> getUnusedKanas() {
