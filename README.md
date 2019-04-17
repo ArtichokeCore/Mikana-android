@@ -26,12 +26,19 @@ Minimalist mobile app to practice Japanese syllabaries, Hiragana and Katakana. M
 <table cellspacing="0" cellpadding="1">
     <tr>
         <td>
-            <a href="https://github.com/kabi404"><img src="https://avatars3.githubusercontent.com/u/19194763?s=460&v=4"
+            <a href="http://www.kabi404.me"><img src="https://avatars3.githubusercontent.com/u/19194763?s=460&v=4"
                     width="100px;" height="100px;" alt="kabi404" /><br /><sub><b>kabi404</b></sub></a>
                 <br/>
                 <a href="#" title="Ideas">🤔</a>
                 <a href="#" title="Code">💻</a>
                 <a href="#" title="Documentation">📚</a>
+        </td>
+        <td>
+            <a href="https://mpardalm.github.io"><img src="https://avatars1.githubusercontent.com/u/19186326?s=460&v=4"
+                    width="100px;" height="100px;" alt="mpardalm" /><br /><sub><b>mpardalm</b></sub></a>
+                <br/>
+                <a href="#" title="Ideas">🤔</a>
+                <a href="#" title="Code">💻</a>
         </td>
     </tr>
 </table>
