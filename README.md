@@ -4,7 +4,7 @@
 ![](https://img.shields.io/badge/version-0.1-blue.svg?style=flat-square)
 ![](https://img.shields.io/badge/PRs-welcome-green.svg?style=flat-square)
 
-Minimalist mobile app to practice Japanese syllabaries, Hiragana and Katakana. Made for Android, based on Kanami.
+Minimalist mobile app to practice Japanese syllabaries, Hiragana and Katakana. Made for Android, based on [Kanami](http://www.kabi404.me/Kanami/).
 
 ## Getting Started
 
