@@ -11,7 +11,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.SelectActivity"
-            android:label="@string/title_activity_select"
+            android:label="@string/second_activity_name"
+            android:parentActivityName=".activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".activities.MainActivity"

@@ -173,4 +173,7 @@
     <string name="hiragana">Hiragana</string>
     <string name="katakana">Katakana</string>
     <string name="update">UPDATE</string>
+
+    <!-- Second Activity Name -->
+    <string name="second_activity_name">Select Options</string>
 </resources>

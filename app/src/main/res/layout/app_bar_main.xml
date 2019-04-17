@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.NoActionBar" />
 
     </android.support.design.widget.AppBarLayout>
 
@@ -44,6 +44,6 @@
         app:backgroundTint="@color/colorPrimaryDark"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="left|bottom"
-        app:srcCompat="@android:drawable/ic_menu_compass" />
+        app:srcCompat="@drawable/ic_settings_white_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>

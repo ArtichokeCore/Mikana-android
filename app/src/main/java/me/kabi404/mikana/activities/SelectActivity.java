@@ -28,6 +28,7 @@ public final class SelectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setToolbar(toolbar);
 
         kanaManager = KanaManager.getInstance();
 
@@ -37,6 +38,16 @@ public final class SelectActivity extends AppCompatActivity {
         setHiraganaRadio((RadioButton) findViewById(R.id.hiraganaRadio));
         setKatakanaRadio((RadioButton) findViewById(R.id.katakanaRadio));
 
+    }
+
+    private void setToolbar(Toolbar toolbar){
+        toolbar.setNavigationIcon(R.drawable.ic_chevron_left_white_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 
     public void onUpdatePressed(View view) {
