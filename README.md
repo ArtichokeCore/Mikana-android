@@ -1,6 +1,6 @@
 # Mikana
 
-[![](https://img.shields.io/github/license/kabi404/Mikana-android.svg?style=flat-square)](https://github.com/kabi404/Mikana-android/blob/master/LICENSE)
+[![](https://img.shields.io/github/license/ArtichokeCore/Mikana-android.svg?style=flat-square)](https://github.com/ArtichokeCore/Mikana-android/blob/master/LICENSE)
 ![](https://img.shields.io/badge/version-0.1-blue.svg?style=flat-square)
 ![](https://img.shields.io/badge/PRs-welcome-green.svg?style=flat-square)
 
@@ -19,7 +19,7 @@ Minimalist mobile app to practice Japanese syllabaries, Hiragana and Katakana. M
 
 ## Versioning
 
-[SemVer](http://semver.org/) versioning. All available versions at [releases page](https://github.com/kabi404/Mikana-android/releases). 
+[SemVer](http://semver.org/) versioning. All available versions at [releases page](https://github.com/ArtichokeCore/Mikana-android/releases). 
 
 ## Contributors
 
@@ -43,5 +43,5 @@ Minimalist mobile app to practice Japanese syllabaries, Hiragana and Katakana. M
     </tr>
 </table>
 
-All this information is also available at [contributors page](https://github.com/kabi404/Mikana-android/contributors).
+All this information is also available at [contributors page](https://github.com/ArtichokeCore/Mikana-android/contributors).
 
