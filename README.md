@@ -40,6 +40,12 @@ Minimalist mobile app to practice Japanese syllabaries, Hiragana and Katakana. M
                 <a href="#" title="Ideas">🤔</a>
                 <a href="#" title="Code">💻</a>
         </td>
+        <td>
+            <a href="https://github.com/danllopis"><img src="https://avatars2.githubusercontent.com/u/18395870?s=460&v=4"
+                    width="100px;" height="100px;" alt="danllopis" /><br /><sub><b>danllopis</b></sub></a>
+                <br/>
+                <a href="#" title="Code">💻</a>
+        </td>
     </tr>
 </table>
 
