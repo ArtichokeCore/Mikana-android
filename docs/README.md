@@ -1,4 +1,4 @@
-# Mikana
+# Mikana (Android version)
 
 [![](https://img.shields.io/github/license/ArtichokeCore/Mikana-android.svg?style=flat-square)](https://github.com/ArtichokeCore/Mikana-android/blob/master/LICENSE)
 ![](https://img.shields.io/badge/version-0.1-blue.svg?style=flat-square)
