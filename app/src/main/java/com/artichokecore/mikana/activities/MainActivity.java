@@ -32,8 +32,6 @@ public final class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         setKanaView((TextView) findViewById(R.id.kanaView));
         setAnswerView((TextView) findViewById(R.id.answerView));
@@ -53,8 +51,7 @@ public final class MainActivity extends AppCompatActivity {
             }
         }
 
-        if(kanaManager.getSelectedKanas().isEmpty())
-            kanaManager.selectFirstRow();
+        kanaManager.loadSelectedKanas(getApplicationContext());
 
         onNextPressed(null);
 

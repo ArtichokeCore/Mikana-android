@@ -1,9 +1,16 @@
 package com.artichokecore.mikana.model;
 
+import android.content.Context;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -15,6 +22,11 @@ public final class KanaManager {
 
     public static final boolean WITH_REPETITION = true;
     public static final boolean WITHOUT_REPETITION = false;
+    public static final String LAST_SELECT_FILE_PATH = "kanas.txt";
+
+    private final String FILE_SPLIT_TOKEN = ":";
+    private final int ROW_POS = 0;
+    private final int COLUMN_POS = 1;
 
     private Kana currentKana, lastKana;
     private Syllabary currentSyllabary;
@@ -53,6 +65,63 @@ public final class KanaManager {
             singleton = new KanaManager(kanaStream);
 
         return KanaManager.getInstance();
+    }
+
+    public void loadSelectedKanas(Context context) {
+
+        File fileToRead = new File(context.getFilesDir(), LAST_SELECT_FILE_PATH);
+
+        String line;
+        BufferedReader in = null;
+
+        try {
+            in = new BufferedReader(new FileReader(fileToRead));
+            line = in.readLine();
+
+            if(line.equalsIgnoreCase(Syllabary.HIRAGANA.name()))
+                setCurrentSyllabary(Syllabary.HIRAGANA);
+            else
+                setCurrentSyllabary(Syllabary.KATAKANA);
+
+            while ((line = in.readLine()) != null){
+                String[] splitLine = line.split(FILE_SPLIT_TOKEN);
+                selectKana(
+                        Integer.parseInt(splitLine[ROW_POS]),
+                        Integer.parseInt(splitLine[COLUMN_POS])
+                );
+            }
+
+        } catch (FileNotFoundException e) {
+            selectFirstRow();
+            saveSelectedKanas(context);
+        } catch (IOException e) {
+            selectFirstRow();
+        }
+    }
+
+    public void saveSelectedKanas(Context context) {
+
+        try {
+            FileWriter out = new FileWriter(new File(context.getFilesDir(), LAST_SELECT_FILE_PATH));
+
+            out.write(currentSyllabary.name() + "\n");
+
+            for(Kana kana: getSelectedKanas()) {
+                for(int rowIndex = 0; rowIndex < getKanaRows()[getCurrentSyllabaryOrd()].size(); rowIndex++) {
+                    for(int columnIndex = 0; columnIndex < getKanaRows()[getCurrentSyllabaryOrd()]
+                            .get(rowIndex).size(); columnIndex++) {
+                        if(kana.equals(getKana(rowIndex, columnIndex)))
+                            out.write(rowIndex + FILE_SPLIT_TOKEN + columnIndex + "\n");
+                    }
+                }
+            }
+
+            out.close();
+        } catch (IOException e) {
+            //TODO: Imposible guardar configuracion
+        }
+
+
     }
 
     /**

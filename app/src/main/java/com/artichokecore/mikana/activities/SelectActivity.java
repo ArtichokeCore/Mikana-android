@@ -74,6 +74,8 @@ public final class SelectActivity extends AppCompatActivity {
             }
         }
 
+        kanaManager.saveSelectedKanas(getApplicationContext());
+
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
