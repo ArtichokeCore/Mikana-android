@@ -1,4 +1,4 @@
-package me.kabi404.mikana.model;
+package com.artichokecore.mikana.model;
 
 public enum Syllabary {
     HIRAGANA, KATAKANA

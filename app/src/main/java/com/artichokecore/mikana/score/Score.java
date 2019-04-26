@@ -1,4 +1,4 @@
-package me.kabi404.mikana.score;
+package com.artichokecore.mikana.score;
 
 public final class Score {
 

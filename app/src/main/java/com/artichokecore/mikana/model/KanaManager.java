@@ -1,4 +1,4 @@
-package me.kabi404.mikana.model;
+package com.artichokecore.mikana.model;
 
 import org.json.JSONArray;
 import org.json.JSONException;

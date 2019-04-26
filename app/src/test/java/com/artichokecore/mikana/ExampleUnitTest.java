@@ -1,4 +1,4 @@
-package me.kabi404.mikana;
+package com.artichokecore.mikana;
 
 import org.junit.Test;
 

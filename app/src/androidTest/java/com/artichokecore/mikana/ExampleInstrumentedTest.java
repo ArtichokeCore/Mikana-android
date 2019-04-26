@@ -1,4 +1,4 @@
-package me.kabi404.mikana;
+package com.artichokecore.mikana;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

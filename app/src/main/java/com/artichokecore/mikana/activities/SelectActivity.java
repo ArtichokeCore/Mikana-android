@@ -1,4 +1,4 @@
-package me.kabi404.mikana.activities;
+package com.artichokecore.mikana.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,10 +9,10 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.RadioButton;
 
-import me.kabi404.mikana.R;
-import me.kabi404.mikana.adapter.KanaRowsAdapter;
-import me.kabi404.mikana.model.KanaManager;
-import me.kabi404.mikana.model.Syllabary;
+import com.artichokecore.mikana.R;
+import com.artichokecore.mikana.adapter.KanaRowsAdapter;
+import com.artichokecore.mikana.model.KanaManager;
+import com.artichokecore.mikana.model.Syllabary;
 
 public final class SelectActivity extends AppCompatActivity {
 

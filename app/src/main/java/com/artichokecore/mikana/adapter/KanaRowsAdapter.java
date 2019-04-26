@@ -1,4 +1,4 @@
-package me.kabi404.mikana.adapter;
+package com.artichokecore.mikana.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,9 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 
-import me.kabi404.mikana.R;
-import me.kabi404.mikana.model.Kana;
-import me.kabi404.mikana.model.KanaManager;
+import com.artichokecore.mikana.R;
+import com.artichokecore.mikana.model.Kana;
+import com.artichokecore.mikana.model.KanaManager;
 
 public final class KanaRowsAdapter extends BaseAdapter {
 

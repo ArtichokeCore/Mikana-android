@@ -1,4 +1,4 @@
-package me.kabi404.mikana.activities;
+package com.artichokecore.mikana.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,9 +13,9 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import me.kabi404.mikana.R;
-import me.kabi404.mikana.model.KanaManager;
-import me.kabi404.mikana.score.Score;
+import com.artichokecore.mikana.R;
+import com.artichokecore.mikana.model.KanaManager;
+import com.artichokecore.mikana.score.Score;
 
 public final class MainActivity extends AppCompatActivity {
 
