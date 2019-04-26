@@ -54,8 +54,8 @@
             android:layout_width="match_parent"
             android:layout_height="197dp"
             android:textAlignment="center"
-            android:textSize="36sp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:textSize="25sp" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
