@@ -38,6 +38,11 @@ public final class SelectActivity extends AppCompatActivity {
         setHiraganaRadio((RadioButton) findViewById(R.id.hiraganaRadio));
         setKatakanaRadio((RadioButton) findViewById(R.id.katakanaRadio));
 
+        if(kanaManager.getCurrentSyllabary() == Syllabary.HIRAGANA)
+            getHiraganaRadio().setChecked(true);
+        else
+            getKatakanaRadio().setChecked(true);
+
     }
 
     private void setToolbar(Toolbar toolbar){
