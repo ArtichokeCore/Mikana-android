@@ -13,3 +13,7 @@
 .externalNativeBuild
 
 \.idea/
+
+app/src/main/res/values/keys\.xml
+
+app/google-services\.json

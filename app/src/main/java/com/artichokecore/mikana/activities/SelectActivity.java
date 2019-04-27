@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ListView;
@@ -13,6 +14,11 @@ import com.artichokecore.mikana.R;
 import com.artichokecore.mikana.adapter.KanaRowsAdapter;
 import com.artichokecore.mikana.model.KanaManager;
 import com.artichokecore.mikana.model.Syllabary;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+
+import static com.artichokecore.mikana.activities.MainActivity.mInterstitialAd;
 
 public final class SelectActivity extends AppCompatActivity {
 
@@ -31,6 +37,7 @@ public final class SelectActivity extends AppCompatActivity {
         setToolbar(toolbar);
 
         kanaManager = KanaManager.getInstance();
+
 
         setKanaRowsView((ListView) findViewById(R.id.kanaRows));
         setAdapter(new KanaRowsAdapter(this));
@@ -81,8 +88,27 @@ public final class SelectActivity extends AppCompatActivity {
 
         kanaManager.saveSelectedKanas(getApplicationContext());
 
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        mInterstitialAd.setAdListener(new AdListener(){
+
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+            }
+
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            }
+        });
+
+        if(mInterstitialAd.isLoaded()){
+            mInterstitialAd.show();
+        }else
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+
+        finish();
+
     }
 
     public void setToHiragana(View view) {

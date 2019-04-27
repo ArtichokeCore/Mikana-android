@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -16,6 +15,10 @@ import java.io.InputStream;
 import com.artichokecore.mikana.R;
 import com.artichokecore.mikana.model.KanaManager;
 import com.artichokecore.mikana.score.Score;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 
 public final class MainActivity extends AppCompatActivity {
 
@@ -28,11 +31,25 @@ public final class MainActivity extends AppCompatActivity {
     private TextView kanaView, answerView, scoreView;
     private ProgressBar progressBar;
 
+    public static InterstitialAd mInterstitialAd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.SplashTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        MobileAds.initialize(this, getString(R.string.ID_App_AdMob));
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getString(R.string.ID_Interstitial));
+        mInterstitialAd.loadAd(new AdRequest.Builder().addTestDevice(getString(R.string.ID_Device_mpardalm)).build());
+
+        mInterstitialAd.setAdListener(new AdListener(){
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+            }
+        });
 
         setKanaView((TextView) findViewById(R.id.kanaView));
         setAnswerView((TextView) findViewById(R.id.answerView));
