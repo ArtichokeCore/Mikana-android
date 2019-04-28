@@ -38,7 +38,6 @@ public final class SelectActivity extends AppCompatActivity {
 
         kanaManager = KanaManager.getInstance();
 
-
         setKanaRowsView((ListView) findViewById(R.id.kanaRows));
         setAdapter(new KanaRowsAdapter(this));
 
