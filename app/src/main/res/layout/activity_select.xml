@@ -36,6 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:checked="true"
+                android:buttonTint="@color/colorPrimaryDark"
                 android:onClick="setToHiragana"
                 android:text="@string/hiragana" />
 
@@ -44,6 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:buttonTint="@color/colorPrimaryDark"
                 android:onClick="setToKatakana"
                 android:text="@string/katakana" />
 
@@ -57,10 +59,16 @@
 
         <Button
             android:id="@+id/updateButton"
+            android:layout_gravity="center"
+            android:layout_marginBottom="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/rounded_button"
             android:onClick="onUpdatePressed"
-            android:text="@string/update" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="@string/update"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 

@@ -25,30 +25,35 @@
             android:id="@+id/check1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimaryDark"
             android:layout_weight="1" />
 
         <CheckBox
             android:id="@+id/check2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimaryDark"
             android:layout_weight="1" />
 
         <CheckBox
             android:id="@+id/check3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimaryDark"
             android:layout_weight="1" />
 
         <CheckBox
             android:id="@+id/check4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimaryDark"
             android:layout_weight="1" />
 
         <CheckBox
             android:id="@+id/check5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimaryDark"
             android:layout_weight="1" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
