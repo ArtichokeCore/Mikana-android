@@ -2,9 +2,11 @@ package com.artichokecore.mikana.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -22,6 +24,7 @@ public final class MainActivity extends AppCompatActivity {
     private static final String SYLLABARIES_FILE_NAME = "syllabaries.json";
     private static final String EMPTY = "";
 
+    private LinearLayout linearLayout;
     private KanaManager kanaManager;
     private Score score;
 
@@ -34,6 +37,7 @@ public final class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setLinearLayout((LinearLayout) findViewById(R.id.linear_layout));
         setKanaView((TextView) findViewById(R.id.kanaView));
         setAnswerView((TextView) findViewById(R.id.answerView));
         setScoreView((TextView) findViewById(R.id.scoreView));
@@ -58,7 +62,41 @@ public final class MainActivity extends AppCompatActivity {
 
         score.restart();
         getScoreView().setText(score.toString());
+
+
+        setClickListeners();
+
     }
+
+    private void setClickListeners() {
+        View.OnLongClickListener longClickListener = new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                onInfoPressed(view);
+                return true;
+            }
+        };
+
+        View.OnClickListener clickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onNextPressed(view);
+            }
+        };
+
+
+        linearLayout.setOnLongClickListener(longClickListener);
+
+        getKanaView().setOnLongClickListener(longClickListener);
+        getKanaView().setOnClickListener(clickListener);
+
+        getScoreView().setOnLongClickListener(longClickListener);
+        getScoreView().setOnClickListener(clickListener);
+
+        getProgressBar().setOnLongClickListener(longClickListener);
+        getProgressBar().setOnClickListener(clickListener);
+    }
+
 
     public void onSelectPressed(View view) {
         Intent intent = new Intent(this, SelectActivity.class);
@@ -85,6 +123,8 @@ public final class MainActivity extends AppCompatActivity {
 
         getProgressBar().setProgress(score.getProgress());
     }
+
+
 
     // Getters & Setters
 
@@ -118,5 +158,13 @@ public final class MainActivity extends AppCompatActivity {
 
     public void setProgressBar(ProgressBar progressBar) {
         this.progressBar = progressBar;
+    }
+
+    public LinearLayout getLinearLayout(){
+        return linearLayout;
+    }
+
+    public void setLinearLayout(LinearLayout linearLayout){
+        this.linearLayout = linearLayout;
     }
 }
