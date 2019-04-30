@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.artichokecore.mikana.R;
 import com.artichokecore.mikana.adapter.KanaRowsAdapter;
@@ -80,6 +81,8 @@ public final class SelectActivity extends AppCompatActivity {
         }
 
         kanaManager.saveSelectedKanas(getApplicationContext());
+
+        Toast.makeText(this, getResources().getText(R.string.updateToast), Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
