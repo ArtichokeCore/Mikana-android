@@ -5,9 +5,9 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Opciones</string>
     <string name="title_activity_settings">Settings</string>
-    <string name="updateToast">Updated kanas</string>
+    <string name="updateToast">Kanas actualizados</string>
 
     <!-- Strings related to Settings -->
 
@@ -173,11 +173,11 @@
     <string name="title_activity_select">SelectActivity</string>
     <string name="hiragana">Hiragana</string>
     <string name="katakana">Katakana</string>
-    <string name="update">UPDATE</string>
+    <string name="update">ACTUALIZAR</string>
 
     <!-- Second Activity Name -->
-    <string name="second_activity_name">Select Options</string>
-    <string name="success">Success</string>
-    <string name="failed">Failed</string>
-    <string name="score">Score</string>
+    <string name="second_activity_name">Seleccionar kanas</string>
+    <string name="success">Aciertos</string>
+    <string name="failed">Fallos</string>
+    <string name="score">Puntuación</string>
 </resources>

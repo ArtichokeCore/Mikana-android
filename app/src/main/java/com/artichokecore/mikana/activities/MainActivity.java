@@ -60,7 +60,7 @@ public final class MainActivity extends AppCompatActivity {
         setScoreView((TextView) findViewById(R.id.scoreView));
         setProgressBar((ProgressBar) findViewById(R.id.progressBar));
 
-        score = Score.getInstance();
+        score = Score.getInstance(getApplicationContext());
 
         kanaManager = KanaManager.getInstance();
 

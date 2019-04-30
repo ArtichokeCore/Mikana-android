@@ -1,5 +1,9 @@
 package com.artichokecore.mikana.score;
 
+import android.content.Context;
+
+import com.artichokecore.mikana.R;
+
 public final class Score {
 
     private int nextButton;
@@ -7,8 +11,10 @@ public final class Score {
     private boolean hasFailed;
 
     private static Score singleton;
+    private Context context;
 
-    private Score() {
+    private Score(Context context) {
+        this.context = context;
         restart();
     }
 
@@ -16,9 +22,11 @@ public final class Score {
      * Singleton call method. Return Score or create if it doesn't exist.
      * @return Score singleton reference.
      */
-    public static Score getInstance() {
-        if(Score.singleton == null)
-            Score.singleton = new Score();
+    public static Score getInstance(Context context) {
+        if(Score.singleton == null) {
+            Score.singleton = new Score(context);
+
+        }
 
         return Score.singleton;
     }
@@ -93,9 +101,9 @@ public final class Score {
     public String toString() {
         StringBuilder builder = new StringBuilder();
 
-        builder.append("Success: ").append(getNextButton()).append("\n");
-        builder.append("Failed: ").append(getInfoButton()).append("\n");
-        builder.append("Score: ").append(getScore());
+        builder.append(context.getResources().getString(R.string.success)+": ").append(getNextButton()).append("\n");
+        builder.append(context.getResources().getString(R.string.failed)+": ").append(getInfoButton()).append("\n");
+        builder.append(context.getResources().getString(R.string.score)+": ").append(getScore());
 
         return builder.toString();
     }
