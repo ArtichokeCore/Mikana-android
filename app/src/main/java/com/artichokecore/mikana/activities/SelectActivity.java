@@ -12,6 +12,7 @@ import android.widget.RadioButton;
 
 import com.artichokecore.mikana.R;
 import com.artichokecore.mikana.adapter.KanaRowsAdapter;
+import com.artichokecore.mikana.config.StaticConfig;
 import com.artichokecore.mikana.model.KanaManager;
 import com.artichokecore.mikana.model.Syllabary;
 import com.google.android.gms.ads.AdListener;
@@ -101,7 +102,7 @@ public final class SelectActivity extends AppCompatActivity {
             }
         });
 
-        if(mInterstitialAd.isLoaded()){
+        if(!StaticConfig.IS_PRO_VERSION && mInterstitialAd.isLoaded()){
             mInterstitialAd.show();
         }else
             Log.d("TAG", "The interstitial wasn't loaded yet.");

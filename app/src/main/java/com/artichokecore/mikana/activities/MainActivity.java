@@ -42,7 +42,10 @@ public final class MainActivity extends AppCompatActivity {
         MobileAds.initialize(this, getString(R.string.ID_App_AdMob));
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId(getString(R.string.ID_Interstitial));
-        mInterstitialAd.loadAd(new AdRequest.Builder().addTestDevice(getString(R.string.ID_Device_mpardalm)).build());
+        mInterstitialAd.loadAd(new AdRequest.Builder()
+                .addTestDevice(getString(R.string.ID_Device_mpardalm))
+                .addTestDevice(R.string.ID_Device_danllopis)
+                .build());
 
         mInterstitialAd.setAdListener(new AdListener(){
             @Override
