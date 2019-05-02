@@ -10,26 +10,38 @@
         android:id="@+id/include"
         layout="@layout/content_main" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/infoButton"
+    <ImageButton
+        android:id="@+id/showButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:onClick="onInfoPressed"
-        app:backgroundTint="@color/colorPrimaryDark"
-        app:srcCompat="@android:drawable/ic_menu_help" />
+        android:onClick="onShowPressed"
+        app:backgroundTint="@android:color/transparent"
+        app:srcCompat="@drawable/ic_eye_solid" />
 
-    <android.support.design.widget.FloatingActionButton
+    <ImageButton
         android:id="@+id/settingsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:onClick="onSelectPressed"
-        app:backgroundTint="@color/colorPrimaryDark"
+        app:backgroundTint="@android:color/transparent"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="left|bottom"
-        app:srcCompat="@drawable/ic_settings_white_24dp" />
+        app:srcCompat="@drawable/ic_plus_solid" />
+
+    <ImageButton
+        android:id="@+id/infoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:onClick="onInfoPressed"
+        app:backgroundTint="@android:color/transparent"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="right|top"
+        app:srcCompat="@drawable/ic_info_solid" />
 
 </android.support.design.widget.CoordinatorLayout>
