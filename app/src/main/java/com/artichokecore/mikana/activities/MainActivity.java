@@ -2,6 +2,7 @@ package com.artichokecore.mikana.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 
@@ -30,6 +32,7 @@ public final class MainActivity extends AppCompatActivity {
 
     private TextView kanaView, answerView, scoreView;
     private ProgressBar progressBar;
+    private boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +75,7 @@ public final class MainActivity extends AppCompatActivity {
         View.OnLongClickListener longClickListener = new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                onInfoPressed(view);
+                onShowPressed(view);
                 return true;
             }
         };
@@ -103,7 +106,7 @@ public final class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onInfoPressed(View view) {
+    public void onShowPressed(View view) {
 
         score.infoButtonPressed();
 
@@ -124,6 +127,28 @@ public final class MainActivity extends AppCompatActivity {
         getProgressBar().setProgress(score.getProgress());
     }
 
+    public void onInfoPressed(View view){
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, R.string.exit, Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+    }
 
 
     // Getters & Setters
