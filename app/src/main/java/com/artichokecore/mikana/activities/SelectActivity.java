@@ -3,6 +3,7 @@ package com.artichokecore.mikana.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -22,23 +23,24 @@ import com.google.android.gms.ads.InterstitialAd;
 
 import static com.artichokecore.mikana.activities.MainActivity.mInterstitialAd;
 
-public final class SelectActivity extends AppCompatActivity {
+public final class SelectActivity extends AppCompatActivity implements View.OnClickListener {
 
     private KanaManager kanaManager;
 
     private ListView kanaRowsView;
     private RadioButton hiraganaRadio, katakanaRadio;
     private KanaRowsAdapter adapter;
+    private CardView updateButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        setToolbar(toolbar);
 
         kanaManager = KanaManager.getInstance();
+
+        updateButton = findViewById(R.id.updateButton);
+        updateButton.setOnClickListener(this);
 
         setKanaRowsView((ListView) findViewById(R.id.kanaRows));
         setAdapter(new KanaRowsAdapter(this));
@@ -51,16 +53,6 @@ public final class SelectActivity extends AppCompatActivity {
         else
             getKatakanaRadio().setChecked(true);
 
-    }
-
-    private void setToolbar(Toolbar toolbar){
-        toolbar.setNavigationIcon(R.drawable.ic_chevron_left_white_24dp);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
     }
 
     public void onUpdatePressed(View view) {
@@ -111,9 +103,6 @@ public final class SelectActivity extends AppCompatActivity {
         finish();
 
         Toast.makeText(this, getResources().getText(R.string.updateToast), Toast.LENGTH_SHORT).show();
-
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
     }
 
     public void setToHiragana(View view) {
@@ -159,5 +148,13 @@ public final class SelectActivity extends AppCompatActivity {
     public void setAdapter(KanaRowsAdapter adapter) {
         this.adapter = adapter;
         getKanaRowsView().setAdapter(adapter);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.updateButton:
+                onUpdatePressed(v);
+        }
     }
 }
