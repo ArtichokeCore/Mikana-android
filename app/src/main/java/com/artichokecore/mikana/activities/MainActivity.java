@@ -6,6 +6,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -47,7 +48,7 @@ public final class MainActivity extends AppCompatActivity {
         mInterstitialAd.setAdUnitId(getString(R.string.ID_Interstitial));
         mInterstitialAd.loadAd(new AdRequest.Builder()
                 .addTestDevice(getString(R.string.ID_Device_mpardalm))
-                .addTestDevice(R.string.ID_Device_danllopis)
+                .addTestDevice(getString(R.string.ID_Device_danllopis))
                 .build());
 
         mInterstitialAd.setAdListener(new AdListener(){
