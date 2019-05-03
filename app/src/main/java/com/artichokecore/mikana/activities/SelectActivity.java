@@ -79,6 +79,9 @@ public final class SelectActivity extends AppCompatActivity implements View.OnCl
             }
         }
 
+        if(kanaManager.getSelectedKanas().size() <= 1)
+            kanaManager.selectFirstRow();
+
         kanaManager.saveSelectedKanas(getApplicationContext());
 
         if(!StaticConfig.IS_PRO_VERSION) {
