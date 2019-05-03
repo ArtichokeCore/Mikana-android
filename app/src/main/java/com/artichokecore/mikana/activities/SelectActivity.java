@@ -81,27 +81,31 @@ public final class SelectActivity extends AppCompatActivity implements View.OnCl
 
         kanaManager.saveSelectedKanas(getApplicationContext());
 
-        mInterstitialAd.setAdListener(new AdListener(){
+        if(!StaticConfig.IS_PRO_VERSION) {
+            mInterstitialAd.setAdListener(new AdListener(){
 
-            @Override
-            public void onAdFailedToLoad(int i) {
-                super.onAdFailedToLoad(i);
+                @Override
+                public void onAdFailedToLoad(int i) {
+                    super.onAdFailedToLoad(i);
+                }
+
+                @Override
+                public void onAdClosed() {
+                    super.onAdClosed();
+                    mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                }
+            });
+
+            if(mInterstitialAd.isLoaded()){
+                mInterstitialAd.show();
+            } else {
+                Log.d("TAG", "The interstitial wasn't loaded yet.");
             }
 
-            @Override
-            public void onAdClosed() {
-                super.onAdClosed();
-                mInterstitialAd.loadAd(new AdRequest.Builder().build());
-            }
-        });
 
-        if(!StaticConfig.IS_PRO_VERSION && mInterstitialAd.isLoaded()){
-            mInterstitialAd.show();
-        }else
-            Log.d("TAG", "The interstitial wasn't loaded yet.");
+        }
 
         finish();
-
         Toast.makeText(this, getResources().getText(R.string.updateToast), Toast.LENGTH_SHORT).show();
     }
 

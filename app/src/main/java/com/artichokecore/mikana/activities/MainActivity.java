@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import com.artichokecore.mikana.R;
+import com.artichokecore.mikana.config.StaticConfig;
 import com.artichokecore.mikana.model.KanaManager;
 import com.artichokecore.mikana.score.Score;
 import com.google.android.gms.ads.AdListener;
@@ -46,20 +47,24 @@ public final class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        MobileAds.initialize(this, getString(R.string.ID_App_AdMob));
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getString(R.string.ID_Interstitial));
-        mInterstitialAd.loadAd(new AdRequest.Builder()
-                .addTestDevice(getString(R.string.ID_Device_mpardalm))
-                .addTestDevice(getString(R.string.ID_Device_danllopis))
-                .build());
+        if(!StaticConfig.IS_PRO_VERSION)
+        {
+            MobileAds.initialize(this, getString(R.string.ID_App_AdMob));
+            mInterstitialAd = new InterstitialAd(this);
+            mInterstitialAd.setAdUnitId(getString(R.string.ID_Interstitial));
+            mInterstitialAd.loadAd(new AdRequest.Builder()
+                    .addTestDevice(getString(R.string.ID_Device_mpardalm))
+                    .addTestDevice(getString(R.string.ID_Device_danllopis))
+                    .build());
 
-        mInterstitialAd.setAdListener(new AdListener(){
-            @Override
-            public void onAdFailedToLoad(int i) {
-                super.onAdFailedToLoad(i);
-            }
-        });
+            mInterstitialAd.setAdListener(new AdListener(){
+                @Override
+                public void onAdFailedToLoad(int i) {
+                    super.onAdFailedToLoad(i);
+                }
+            });
+        }
+
 
         setLinearLayout((LinearLayout) findViewById(R.id.linear_layout));
         setKanaView((TextView) findViewById(R.id.kanaView));
