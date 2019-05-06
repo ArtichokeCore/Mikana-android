@@ -2,10 +2,10 @@ package com.artichokecore.mikana.model;
 
 public final class Kana {
 
-    protected static final String HIRAGANA_ATTR = "hiragana";
-    protected static final String KATAKANA_ATTR = "katakana";
-    protected static final String ROMAJI_ATTR = "romaji";
-    protected static final String JAPANESE_KANA_ATTR = "character";
+    public static final String HIRAGANA_ATTR = "hiragana";
+    public static final String KATAKANA_ATTR = "katakana";
+    public static final String ROMAJI_ATTR = "romaji";
+    public static final String JAPANESE_KANA_ATTR = "character";
 
     private Syllabary syllabary;
     private String kanaChar;

@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.artichokecore.mikana.R;
-import com.artichokecore.mikana.model.KanaManager;
+import com.artichokecore.mikana.data.structures.KanaManager;
 import com.artichokecore.mikana.score.Score;
 
 public final class MainActivity extends AppCompatActivity {

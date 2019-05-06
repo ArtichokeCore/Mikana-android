@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import com.artichokecore.mikana.R;
 import com.artichokecore.mikana.config.StaticConfig;
-import com.artichokecore.mikana.model.KanaManager;
+import com.artichokecore.mikana.data.structures.KanaManager;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;

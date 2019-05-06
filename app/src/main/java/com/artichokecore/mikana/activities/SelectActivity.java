@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.artichokecore.mikana.R;
 import com.artichokecore.mikana.adapter.KanaRowsAdapter;
 import com.artichokecore.mikana.config.StaticConfig;
-import com.artichokecore.mikana.model.KanaManager;
+import com.artichokecore.mikana.data.structures.KanaManager;
 import com.artichokecore.mikana.model.Syllabary;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;

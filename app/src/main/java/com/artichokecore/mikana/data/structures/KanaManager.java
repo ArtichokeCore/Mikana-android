@@ -1,6 +1,9 @@
-package com.artichokecore.mikana.model;
+package com.artichokecore.mikana.data.structures;
 
 import android.content.Context;
+
+import com.artichokecore.mikana.model.Kana;
+import com.artichokecore.mikana.model.Syllabary;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,7 +34,7 @@ public final class KanaManager {
     private Kana currentKana, lastKana;
     private Syllabary currentSyllabary;
 
-    private List<List<Kana>>[] kanaRows;
+    private KanaMatrix kanaMatrix;
 
     private List<Kana> selectedKanas, unusedKanas;
 
@@ -44,7 +47,7 @@ public final class KanaManager {
      * @exception JSONException Data format error.
      */
     private KanaManager(InputStream kanaStream) throws IOException, JSONException {
-        setKanaRows(new ArrayList[2]);
+        setKanaMatrix(new KanaMatrix());
 
         setSelectedKanas(new ArrayList<Kana>());
         setUnusedKanas(new LinkedList<Kana>());
@@ -78,6 +81,9 @@ public final class KanaManager {
             in = new BufferedReader(new FileReader(fileToRead));
             line = in.readLine();
 
+            if(line == null)
+                throw new IOException();
+
             if(line.equalsIgnoreCase(Syllabary.HIRAGANA.name()))
                 setCurrentSyllabary(Syllabary.HIRAGANA);
             else
@@ -107,13 +113,8 @@ public final class KanaManager {
             out.write(currentSyllabary.name() + "\n");
 
             for(Kana kana: getSelectedKanas()) {
-                for(int rowIndex = 0; rowIndex < getKanaRows()[getCurrentSyllabaryOrd()].size(); rowIndex++) {
-                    for(int columnIndex = 0; columnIndex < getKanaRows()[getCurrentSyllabaryOrd()]
-                            .get(rowIndex).size(); columnIndex++) {
-                        if(kana.equals(getKana(rowIndex, columnIndex)))
-                            out.write(rowIndex + FILE_SPLIT_TOKEN + columnIndex + "\n");
-                    }
-                }
+                int[] pos = getKanaMatrix().getKanaPos(kana, getCurrentSyllabary());
+                out.write(pos[0] + FILE_SPLIT_TOKEN + pos[1] +"\n");
             }
 
             out.close();
@@ -170,7 +171,7 @@ public final class KanaManager {
                 );
                 kanaRow.add(loadedKana);
             }
-            this.kanaRows[syllabary.ordinal()].add(kanaRow);
+            getKanaMatrix().addRow(kanaRow, syllabary);
         }
     }
 
@@ -181,7 +182,7 @@ public final class KanaManager {
 
         getSelectedKanas().clear();
         getSelectedKanas().addAll(
-                kanaRows[getCurrentSyllabaryOrd()].get(0));
+                getKanaMatrix().getFirstRow(currentSyllabary));
         getUnusedKanas().clear();
     }
 
@@ -259,8 +260,8 @@ public final class KanaManager {
      * @return boolean This returns true if referenced kana exists.
      */
     public boolean exist(int row, int column) {
-        return row < getKanaRows()[getCurrentSyllabaryOrd()].size() &&
-                column < getKanaRows()[getCurrentSyllabaryOrd()].get(row).size();
+        return row < getKanaMatrix().getSyllabaryMatrix(getCurrentSyllabary()).size() &&
+                column < getKanaMatrix().getKanaRow(row, getCurrentSyllabary()).size();
     }
 
     /**
@@ -270,7 +271,7 @@ public final class KanaManager {
      * @return Kana This returns referenced kana.
      */
     public Kana getKana(int row, int column) {
-        return getKanaRows()[getCurrentSyllabaryOrd()].get(row).get(column);
+        return getKanaMatrix().getKanaByPos(row, column, getCurrentSyllabary());
     }
 
     /**
@@ -279,26 +280,13 @@ public final class KanaManager {
      * @param column pointer of kanaRows.
      */
     public void selectKana(int row, int column) {
-        getSelectedKanas().add(getKanaRows()[getCurrentSyllabaryOrd()]
-                .get(row).get(column)
-        );
+        getSelectedKanas().add(getKana(row, column));
     }
 
     // Getters & Setters
 
-    public List<List<Kana>>[] getKanaRows() {
-        return kanaRows;
-    }
-
     public List<List<Kana>> getCurrentSyllabaryRows() {
-        return kanaRows[getCurrentSyllabaryOrd()];
-    }
-
-    private void setKanaRows(List<List<Kana>>[] kanaRows) {
-        for(int i = 0; i < kanaRows.length; i++) {
-            kanaRows[i] = new ArrayList<>();
-        }
-        this.kanaRows = kanaRows;
+        return getKanaMatrix().getSyllabaryMatrix(getCurrentSyllabary());
     }
 
     public Syllabary getCurrentSyllabary() {
@@ -347,5 +335,13 @@ public final class KanaManager {
 
     public void setLastKana(Kana lastKana) {
         this.lastKana = lastKana;
+    }
+
+    public KanaMatrix getKanaMatrix() {
+        return kanaMatrix;
+    }
+
+    public void setKanaMatrix(KanaMatrix kanaMatrix) {
+        this.kanaMatrix = kanaMatrix;
     }
 }
