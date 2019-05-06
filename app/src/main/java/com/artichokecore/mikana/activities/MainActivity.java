@@ -99,6 +99,10 @@ public final class MainActivity extends AppCompatActivity {
         getProgressBar().setOnClickListener(clickListener);
     }
 
+    public void onInfoPressed(View view) {
+
+    }
+
 
     public void onSelectPressed(View view) {
         Intent intent = new Intent(this, SelectActivity.class);
