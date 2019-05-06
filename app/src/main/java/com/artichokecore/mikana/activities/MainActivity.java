@@ -53,7 +53,6 @@ public final class MainActivity extends AppCompatActivity {
             mInterstitialAd = new InterstitialAd(this);
             mInterstitialAd.setAdUnitId(getString(R.string.ID_Interstitial));
             mInterstitialAd.loadAd(new AdRequest.Builder()
-                    .addTestDevice(getString(R.string.ID_Device_mpardalm))
                     .addTestDevice(getString(R.string.ID_Device_danllopis))
                     .build());
 
