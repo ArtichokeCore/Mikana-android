@@ -11,13 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.artichokecore.mikana.R;
-import com.artichokecore.mikana.config.StaticConfig;
 import com.artichokecore.mikana.model.KanaManager;
 import com.artichokecore.mikana.score.Score;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
 
 public final class MainActivity extends AppCompatActivity {
 
@@ -29,29 +24,10 @@ public final class MainActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private boolean doubleBackToExitPressedOnce = false;
 
-    public static InterstitialAd mInterstitialAd;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        if(!StaticConfig.IS_PRO_VERSION)
-        {
-            MobileAds.initialize(this, getString(R.string.ID_App_AdMob));
-            mInterstitialAd = new InterstitialAd(this);
-            mInterstitialAd.setAdUnitId(getString(R.string.ID_Interstitial));
-            mInterstitialAd.loadAd(new AdRequest.Builder()
-                    .addTestDevice(getString(R.string.ID_Device_danllopis))
-                    .build());
-
-            mInterstitialAd.setAdListener(new AdListener(){
-                @Override
-                public void onAdFailedToLoad(int i) {
-                    super.onAdFailedToLoad(i);
-                }
-            });
-        }
 
         setLinearLayout((LinearLayout) findViewById(R.id.linear_layout));
         setKanaView((TextView) findViewById(R.id.kanaView));

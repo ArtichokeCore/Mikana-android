@@ -17,12 +17,10 @@ import com.artichokecore.mikana.adapter.KanaRowsAdapter;
 import com.artichokecore.mikana.config.StaticConfig;
 import com.artichokecore.mikana.model.KanaManager;
 import com.artichokecore.mikana.model.Syllabary;
-import com.artichokecore.mikana.score.Score;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
 
-import static com.artichokecore.mikana.activities.MainActivity.mInterstitialAd;
+import static com.artichokecore.mikana.activities.InitActivity.mInterstitialAd;
 
 public final class SelectActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -107,7 +105,6 @@ public final class SelectActivity extends AppCompatActivity implements View.OnCl
             }
 
         }
-
 
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
