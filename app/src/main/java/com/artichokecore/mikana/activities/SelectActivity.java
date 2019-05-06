@@ -17,6 +17,7 @@ import com.artichokecore.mikana.adapter.KanaRowsAdapter;
 import com.artichokecore.mikana.config.StaticConfig;
 import com.artichokecore.mikana.model.KanaManager;
 import com.artichokecore.mikana.model.Syllabary;
+import com.artichokecore.mikana.score.Score;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
@@ -105,9 +106,11 @@ public final class SelectActivity extends AppCompatActivity implements View.OnCl
                 Log.d("TAG", "The interstitial wasn't loaded yet.");
             }
 
-
         }
 
+
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
         finish();
         Toast.makeText(this, getResources().getText(R.string.updateToast), Toast.LENGTH_SHORT).show();
     }

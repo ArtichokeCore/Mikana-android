@@ -3,19 +3,12 @@ package com.artichokecore.mikana.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.json.JSONException;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 import com.artichokecore.mikana.R;
 import com.artichokecore.mikana.config.StaticConfig;
@@ -93,7 +86,6 @@ public final class MainActivity extends AppCompatActivity {
                 onNextPressed(view);
             }
         };
-
 
         linearLayout.setOnLongClickListener(longClickListener);
 

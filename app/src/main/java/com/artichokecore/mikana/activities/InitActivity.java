@@ -31,6 +31,7 @@ public class InitActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+                setTheme(R.style.AppTheme_NoActionBar);
                 finish();
             }
         }, INIT_DELAY);
