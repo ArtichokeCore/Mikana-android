@@ -35,11 +35,10 @@ public final class MainActivity extends AppCompatActivity {
         setScoreView((TextView) findViewById(R.id.scoreView));
         setProgressBar((ProgressBar) findViewById(R.id.progressBar));
 
-
         kanaManager = KanaManager.getInstance();
         score = Score.getInstance(getApplicationContext());
 
-        onNextPressed(null);
+        onNextPressed(getKanaView());
 
         score.restart();
         getScoreView().setText(score.toString());
@@ -63,7 +62,7 @@ public final class MainActivity extends AppCompatActivity {
             }
         };
 
-        linearLayout.setOnLongClickListener(longClickListener);
+        getLinearLayout().setOnLongClickListener(longClickListener);
 
         getKanaView().setOnLongClickListener(longClickListener);
         getKanaView().setOnClickListener(clickListener);
