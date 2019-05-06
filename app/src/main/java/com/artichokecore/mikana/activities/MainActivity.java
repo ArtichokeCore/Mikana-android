@@ -3,33 +3,18 @@ package com.artichokecore.mikana.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONException;
-
-import java.io.IOException;
-import java.io.InputStream;
-
 import com.artichokecore.mikana.R;
-import com.artichokecore.mikana.config.StaticConfig;
 import com.artichokecore.mikana.model.KanaManager;
 import com.artichokecore.mikana.score.Score;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
 
 public final class MainActivity extends AppCompatActivity {
-
-    private static final String SYLLABARIES_FILE_NAME = "syllabaries.json";
-    private static final String EMPTY = "";
 
     private LinearLayout linearLayout;
     private KanaManager kanaManager;
@@ -39,31 +24,10 @@ public final class MainActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private boolean doubleBackToExitPressedOnce = false;
 
-    public static InterstitialAd mInterstitialAd;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.SplashTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        if(!StaticConfig.IS_PRO_VERSION)
-        {
-            MobileAds.initialize(this, getString(R.string.ID_App_AdMob));
-            mInterstitialAd = new InterstitialAd(this);
-            mInterstitialAd.setAdUnitId(getString(R.string.ID_Interstitial));
-            mInterstitialAd.loadAd(new AdRequest.Builder()
-                    .addTestDevice(getString(R.string.ID_Device_danllopis))
-                    .build());
-
-            mInterstitialAd.setAdListener(new AdListener(){
-                @Override
-                public void onAdFailedToLoad(int i) {
-                    super.onAdFailedToLoad(i);
-                }
-            });
-        }
-
 
         setLinearLayout((LinearLayout) findViewById(R.id.linear_layout));
         setKanaView((TextView) findViewById(R.id.kanaView));
@@ -71,29 +35,15 @@ public final class MainActivity extends AppCompatActivity {
         setScoreView((TextView) findViewById(R.id.scoreView));
         setProgressBar((ProgressBar) findViewById(R.id.progressBar));
 
+        kanaManager = KanaManager.getInstance();
         score = Score.getInstance(getApplicationContext());
 
-        kanaManager = KanaManager.getInstance();
-
-        if(kanaManager == null) {
-            try {
-                InputStream syllabariesStream = getAssets().open(SYLLABARIES_FILE_NAME);
-                kanaManager = KanaManager.getInstance(syllabariesStream);
-            } catch (IOException | JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-        kanaManager.loadSelectedKanas(getApplicationContext());
-
-        onNextPressed(null);
+        onNextPressed(getKanaView());
 
         score.restart();
         getScoreView().setText(score.toString());
 
-
         setClickListeners();
-
     }
 
     private void setClickListeners() {
@@ -112,8 +62,7 @@ public final class MainActivity extends AppCompatActivity {
             }
         };
 
-
-        linearLayout.setOnLongClickListener(longClickListener);
+        getLinearLayout().setOnLongClickListener(longClickListener);
 
         getKanaView().setOnLongClickListener(longClickListener);
         getKanaView().setOnClickListener(clickListener);
@@ -123,6 +72,10 @@ public final class MainActivity extends AppCompatActivity {
 
         getProgressBar().setOnLongClickListener(longClickListener);
         getProgressBar().setOnClickListener(clickListener);
+    }
+
+    public void onInfoPressed(View view) {
+
     }
 
 
@@ -142,7 +95,7 @@ public final class MainActivity extends AppCompatActivity {
     }
 
     public void onNextPressed(View view) {
-        getAnswerView().setText(EMPTY);
+        getAnswerView().setText("");
         kanaManager.selectRandomKana(KanaManager.WITHOUT_REPETITION);
         getKanaView().setText(kanaManager.getCurrentKana().getKanaChar());
 
@@ -150,10 +103,6 @@ public final class MainActivity extends AppCompatActivity {
         getScoreView().setText(score.toString());
 
         getProgressBar().setProgress(score.getProgress());
-    }
-
-    public void onInfoPressed(View view){
-
     }
 
     @Override
@@ -170,7 +119,7 @@ public final class MainActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-                doubleBackToExitPressedOnce=false;
+                doubleBackToExitPressedOnce = false;
             }
         }, 2000);
     }

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -19,9 +18,8 @@ import com.artichokecore.mikana.model.KanaManager;
 import com.artichokecore.mikana.model.Syllabary;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
 
-import static com.artichokecore.mikana.activities.MainActivity.mInterstitialAd;
+import static com.artichokecore.mikana.activities.InitActivity.mInterstitialAd;
 
 public final class SelectActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -105,9 +103,10 @@ public final class SelectActivity extends AppCompatActivity implements View.OnCl
                 Log.d("TAG", "The interstitial wasn't loaded yet.");
             }
 
-
         }
 
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
         finish();
         Toast.makeText(this, getResources().getText(R.string.updateToast), Toast.LENGTH_SHORT).show();
     }
