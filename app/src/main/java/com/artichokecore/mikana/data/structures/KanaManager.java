@@ -2,6 +2,8 @@ package com.artichokecore.mikana.data.structures;
 
 import android.content.Context;
 
+import com.artichokecore.mikana.config.Path;
+import com.artichokecore.mikana.config.StaticConfig;
 import com.artichokecore.mikana.model.Kana;
 import com.artichokecore.mikana.model.Syllabary;
 
@@ -23,13 +25,7 @@ import java.util.Random;
 
 public final class KanaManager {
 
-    public static final String LAST_SELECT_FILE_PATH = "kanas.txt";
-
-    private final String FILE_SPLIT_TOKEN = ":";
-    private final int ROW_POS = 0;
-    private final int COLUMN_POS = 1;
-
-    private Kana currentKana, lastKana;
+    private Kana currentKana;
     private Syllabary currentSyllabary;
 
     private KanaMatrix kanaMatrix;
@@ -68,7 +64,7 @@ public final class KanaManager {
 
     public void loadSelectedKanas(Context context) {
 
-        File fileToRead = new File(context.getFilesDir(), LAST_SELECT_FILE_PATH);
+        File fileToRead = new File(context.getFilesDir(), Path.LAST_SELECT_FILE_PATH);
 
         String line;
 
@@ -86,7 +82,7 @@ public final class KanaManager {
             List<Kana> selectedKanas = new LinkedList<>();
 
             while ((line = reader.readLine()) != null){
-                String[] splitLine = line.split(FILE_SPLIT_TOKEN);
+                String[] splitLine = line.split(StaticConfig.SPLIT_TOKEN);
                 selectedKanas.add(
                         getKana(Integer.parseInt(splitLine[0]),
                                 Integer.parseInt(splitLine[1]))
@@ -106,13 +102,13 @@ public final class KanaManager {
     public void saveSelectedKanas(Context context) {
 
         try {
-            FileWriter out = new FileWriter(new File(context.getFilesDir(), LAST_SELECT_FILE_PATH));
+            FileWriter out = new FileWriter(new File(context.getFilesDir(), Path.LAST_SELECT_FILE_PATH));
 
             out.write(currentSyllabary.name() + "\n");
 
             for(Kana kana: getSelector().getSelectedKanas()) {
                 int[] pos = getKanaMatrix().getKanaPos(kana, getCurrentSyllabary());
-                out.write(pos[0] + FILE_SPLIT_TOKEN + pos[1] +"\n");
+                out.write(pos[0] + StaticConfig.SPLIT_TOKEN + pos[1] +"\n");
             }
 
             out.close();

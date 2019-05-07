@@ -17,20 +17,11 @@ final class KanaSelector {
         setUnusedKanas(new LinkedList<Kana>());
     }
 
-    protected KanaSelector(List<Kana> selectedKanas) {
-        this();
-        selectKanas(selectedKanas);
-    }
-
     protected void selectKanas(List<Kana> selectedKanas) {
         getSelectedKanas().clear();
         getSelectedKanas().addAll(selectedKanas);
 
         randomizeSelectedKanas();
-    }
-
-    protected void selectKana(Kana selectedKana) {
-        getSelectedKanas().add(selectedKana);
     }
 
     protected Kana getRandomKana() {
