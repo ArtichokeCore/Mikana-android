@@ -15,9 +15,13 @@ import com.artichokecore.mikana.R;
 import com.artichokecore.mikana.adapter.KanaRowsAdapter;
 import com.artichokecore.mikana.config.StaticConfig;
 import com.artichokecore.mikana.data.structures.KanaManager;
+import com.artichokecore.mikana.model.Kana;
 import com.artichokecore.mikana.model.Syllabary;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
+
+import java.util.LinkedList;
+import java.util.List;
 
 import static com.artichokecore.mikana.activities.InitActivity.mInterstitialAd;
 
@@ -57,7 +61,7 @@ public final class SelectActivity extends AppCompatActivity implements View.OnCl
 
         Syllabary currentSyllabary = getHiraganaRadio().isChecked() ? Syllabary.HIRAGANA : Syllabary.KATAKANA;
         kanaManager.setCurrentSyllabary(currentSyllabary);
-        kanaManager.unselectKanas();
+        List<Kana> selectedKanas = new LinkedList<>();
 
         for(int rowIndex = 0; rowIndex < getKanaRowsView().getChildCount(); rowIndex++) {
             View rowView = getKanaRowsView().getChildAt(rowIndex);
@@ -72,13 +76,15 @@ public final class SelectActivity extends AppCompatActivity implements View.OnCl
 
             for(int columnIndex = 0; columnIndex < checks.length; columnIndex++) {
                 if(checks[columnIndex].isChecked()) {
-                    kanaManager.selectKana(rowIndex, columnIndex);
+                    selectedKanas.add(kanaManager.getKana(rowIndex, columnIndex));
                 }
             }
         }
 
-        if(kanaManager.getSelectedKanas().size() <= 1)
+        if(selectedKanas.size() <= 1)
             kanaManager.selectFirstRow();
+        else
+            kanaManager.selectKanas(selectedKanas);
 
         kanaManager.saveSelectedKanas(getApplicationContext());
 

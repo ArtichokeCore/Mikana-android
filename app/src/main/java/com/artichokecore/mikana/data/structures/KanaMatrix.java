@@ -6,7 +6,7 @@ import com.artichokecore.mikana.model.Syllabary;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class KanaMatrix {
+final class KanaMatrix {
 
     private List<List<Kana>> [] matrix;
 
@@ -23,7 +23,7 @@ public final class KanaMatrix {
     }
 
     protected Kana getKanaByPos(int row, int column, Syllabary syllabary) {
-2        return getKanaRow(row, syllabary).get(column);
+        return getKanaRow(row, syllabary).get(column);
     }
 
     protected int[] getKanaPos(Kana kana, Syllabary syllabary) {

@@ -23,8 +23,6 @@ import java.util.Random;
 
 public final class KanaManager {
 
-    public static final boolean WITH_REPETITION = true;
-    public static final boolean WITHOUT_REPETITION = false;
     public static final String LAST_SELECT_FILE_PATH = "kanas.txt";
 
     private final String FILE_SPLIT_TOKEN = ":";
@@ -35,8 +33,7 @@ public final class KanaManager {
     private Syllabary currentSyllabary;
 
     private KanaMatrix kanaMatrix;
-
-    private List<Kana> selectedKanas, unusedKanas;
+    private KanaSelector selector;
 
     private static KanaManager singleton;
 
@@ -49,8 +46,7 @@ public final class KanaManager {
     private KanaManager(InputStream kanaStream) throws IOException, JSONException {
         setKanaMatrix(new KanaMatrix());
 
-        setSelectedKanas(new ArrayList<Kana>());
-        setUnusedKanas(new LinkedList<Kana>());
+        setSelector(new KanaSelector());
         loadDataFromJSON(kanaStream);
 
         setCurrentSyllabary(Syllabary.HIRAGANA);
@@ -75,11 +71,9 @@ public final class KanaManager {
         File fileToRead = new File(context.getFilesDir(), LAST_SELECT_FILE_PATH);
 
         String line;
-        BufferedReader in = null;
 
-        try {
-            in = new BufferedReader(new FileReader(fileToRead));
-            line = in.readLine();
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileToRead))) {
+            line = reader.readLine();
 
             if(line == null)
                 throw new IOException();
@@ -89,13 +83,17 @@ public final class KanaManager {
             else
                 setCurrentSyllabary(Syllabary.KATAKANA);
 
-            while ((line = in.readLine()) != null){
+            List<Kana> selectedKanas = new LinkedList<>();
+
+            while ((line = reader.readLine()) != null){
                 String[] splitLine = line.split(FILE_SPLIT_TOKEN);
-                selectKana(
-                        Integer.parseInt(splitLine[ROW_POS]),
-                        Integer.parseInt(splitLine[COLUMN_POS])
+                selectedKanas.add(
+                        getKana(Integer.parseInt(splitLine[0]),
+                                Integer.parseInt(splitLine[1]))
                 );
             }
+
+            selectKanas(selectedKanas);
 
         } catch (FileNotFoundException e) {
             selectFirstRow();
@@ -112,7 +110,7 @@ public final class KanaManager {
 
             out.write(currentSyllabary.name() + "\n");
 
-            for(Kana kana: getSelectedKanas()) {
+            for(Kana kana: getSelector().getSelectedKanas()) {
                 int[] pos = getKanaMatrix().getKanaPos(kana, getCurrentSyllabary());
                 out.write(pos[0] + FILE_SPLIT_TOKEN + pos[1] +"\n");
             }
@@ -121,8 +119,6 @@ public final class KanaManager {
         } catch (IOException e) {
             //TODO: Imposible guardar configuracion
         }
-
-
     }
 
     /**
@@ -179,59 +175,17 @@ public final class KanaManager {
      * Select the first row of Kanas of the current syllabary.
      */
     public void selectFirstRow() {
-
-        getSelectedKanas().clear();
-        getSelectedKanas().addAll(
-                getKanaMatrix().getFirstRow(currentSyllabary));
-        getUnusedKanas().clear();
+        List<Kana> firstRow = getKanaMatrix().getFirstRow(currentSyllabary);
+        getSelector().selectKanas(firstRow);
     }
 
     /**
      * Change current kana selecting randomly a kana from selected kanas.
-     * @param withRepetition a kana will not be returned again until all others have been returned at least once.
-     * @exception JSONException Data format error.
      * @return Kana returns current random kana.
      */
-    public Kana selectRandomKana(boolean withRepetition) {
-
-        Random rnd = new Random();
-        int randomIndex;
-
-        if(withRepetition == WITH_REPETITION) {
-            randomIndex = rnd.nextInt(getSelectedKanas().size());
-            setLastKana(getCurrentKana());
-            setCurrentKana(getSelectedKanas().get(randomIndex));
-        } else {
-            if(getUnusedKanas().isEmpty())
-                reAddAllUnusedKanas();
-
-            setLastKana(getCurrentKana());
-
-            do {
-                randomIndex = rnd.nextInt(getUnusedKanas().size());
-                setCurrentKana(getUnusedKanas().get(randomIndex));
-            } while (getLastKana() == getCurrentKana() && getUnusedKanas().size() > 1);
-
-            getUnusedKanas().remove(randomIndex);
-        }
-
+    public Kana selectRandomKana() {
+        setCurrentKana(getSelector().getRandomKana());
         return getCurrentKana();
-    }
-
-    /**
-     * Add all selectedKanas to unusedKanas
-     */
-    private void reAddAllUnusedKanas() {
-        getUnusedKanas().clear();
-        getUnusedKanas().addAll(getSelectedKanas());
-    }
-
-    /**
-     * Clear selected kanas.
-     */
-    public void unselectKanas() {
-        getSelectedKanas().clear();
-        getUnusedKanas().clear();
     }
 
     /**
@@ -240,7 +194,7 @@ public final class KanaManager {
      * @return boolean This returns true if that kana is included in selected kanas.
      */
     public boolean isSelected(Kana kana) {
-        return getSelectedKanas().contains(kana);
+        return getSelector().getSelectedKanas().contains(kana);
     }
 
     /**
@@ -276,11 +230,14 @@ public final class KanaManager {
 
     /**
      * Add kana from index to selected kanas
-     * @param row pointer of kanaRows.
-     * @param column pointer of kanaRows.
+     * @param selectedKanas
      */
-    public void selectKana(int row, int column) {
-        getSelectedKanas().add(getKana(row, column));
+    public void selectKanas(List<Kana> selectedKanas) {
+        getSelector().selectKanas(selectedKanas);
+    }
+
+    public int getSizeOfSelectedKanas() {
+        return getSelector().getSelectedKanas().size();
     }
 
     // Getters & Setters
@@ -293,32 +250,8 @@ public final class KanaManager {
         return currentSyllabary;
     }
 
-    /**
-     * Change current kana selecting randomly a kana from selected kanas.
-     * @return int returns current Syllabary ordinal number. Katakana = 1, Hiragana = 0.
-     */
-    public int getCurrentSyllabaryOrd() {
-        return currentSyllabary.ordinal();
-    }
-
     public void setCurrentSyllabary(Syllabary currentSyllabary) {
         this.currentSyllabary = currentSyllabary;
-    }
-
-    public List<Kana> getSelectedKanas() {
-        return selectedKanas;
-    }
-
-    private void setSelectedKanas(List<Kana> selectedKanas) {
-        this.selectedKanas = selectedKanas;
-    }
-
-    public List<Kana> getUnusedKanas() {
-        return unusedKanas;
-    }
-
-    public void setUnusedKanas(List<Kana> unusedKanas) {
-        this.unusedKanas = unusedKanas;
     }
 
     public Kana getCurrentKana() {
@@ -329,19 +262,19 @@ public final class KanaManager {
         this.currentKana = currentKana;
     }
 
-    public Kana getLastKana() {
-        return lastKana;
-    }
-
-    public void setLastKana(Kana lastKana) {
-        this.lastKana = lastKana;
-    }
-
     public KanaMatrix getKanaMatrix() {
         return kanaMatrix;
     }
 
     public void setKanaMatrix(KanaMatrix kanaMatrix) {
         this.kanaMatrix = kanaMatrix;
+    }
+
+    public KanaSelector getSelector() {
+        return selector;
+    }
+
+    public void setSelector(KanaSelector selector) {
+        this.selector = selector;
     }
 }
