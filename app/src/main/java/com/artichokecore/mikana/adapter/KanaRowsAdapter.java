@@ -9,7 +9,7 @@ import android.widget.CheckBox;
 
 import com.artichokecore.mikana.R;
 import com.artichokecore.mikana.model.Kana;
-import com.artichokecore.mikana.model.KanaManager;
+import com.artichokecore.mikana.data.structures.KanaManager;
 
 public final class KanaRowsAdapter extends BaseAdapter {
 

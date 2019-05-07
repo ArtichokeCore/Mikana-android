@@ -10,7 +10,7 @@
         android:id="@+id/include"
         layout="@layout/content_main" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/showButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,9 +18,11 @@
         android:layout_margin="@dimen/fab_margin"
         android:onClick="onShowPressed"
         app:backgroundTint="@android:color/transparent"
-        app:srcCompat="@drawable/ic_eye_solid" />
+        app:srcCompat="@drawable/ic_eye_solid"
+        android:padding="8dp"
+        android:background="?selectableItemBackgroundBorderless"/>
 
-    <ImageButton
+    <ImageView
         android:id="@+id/settingsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,18 +32,20 @@
         app:backgroundTint="@android:color/transparent"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="left|bottom"
-        app:srcCompat="@drawable/ic_plus_solid" />
-
-    <ImageButton
+        app:srcCompat="@drawable/ic_plus_solid"
+        android:padding="8dp"
+        android:background="?selectableItemBackgroundBorderless"/>
+    <ImageView
         android:id="@+id/infoButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|end"
         android:layout_margin="@dimen/fab_margin"
         android:onClick="onInfoPressed"
+        android:padding="8dp"
         app:backgroundTint="@android:color/transparent"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="right|top"
-        app:srcCompat="@drawable/ic_info_solid" />
-
+        app:srcCompat="@drawable/ic_info_solid"
+        android:background="?selectableItemBackgroundBorderless"/>
 </android.support.design.widget.CoordinatorLayout>
