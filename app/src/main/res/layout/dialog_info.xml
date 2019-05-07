@@ -13,9 +13,9 @@
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
         android:text="@string/description_dialog"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textAlignment="center"/>
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:layout_margin="16dp"/>
 
     <ImageView
         android:id="@+id/appIcon"
@@ -31,8 +31,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="ArtichokeCore"
+        android:textStyle="bold"
         android:textSize="32sp" />
 
     <TextView
