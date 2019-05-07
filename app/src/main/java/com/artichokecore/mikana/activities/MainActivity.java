@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.LinearLayout;
@@ -12,16 +11,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONException;
-
-import java.io.IOException;
-import java.io.InputStream;
-
-import com.artichokecore.mikana.BuildConfig;
 import com.artichokecore.mikana.R;
 import com.artichokecore.mikana.data.structures.KanaManager;
 import com.artichokecore.mikana.dialog.InfoDialog;
-import com.artichokecore.mikana.model.KanaManager;
 import com.artichokecore.mikana.score.Score;
 
 public final class MainActivity extends AppCompatActivity {
@@ -83,11 +75,6 @@ public final class MainActivity extends AppCompatActivity {
         getProgressBar().setOnLongClickListener(longClickListener);
         getProgressBar().setOnClickListener(clickListener);
     }
-
-    public void onInfoPressed(View view) {
-
-    }
-
 
     public void onSelectPressed(View view) {
         Intent intent = new Intent(this, SelectActivity.class);
