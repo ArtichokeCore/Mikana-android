@@ -14,4 +14,5 @@
     <string name="failed">Fallos</string>
     <string name="score">Puntuación</string>
     <string name="exit">Pulse otra vez ATRAS para salir</string>
+    <string name="description_dialog">Mikana es un software desarrollado por</string>
 </resources>
