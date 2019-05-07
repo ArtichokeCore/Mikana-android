@@ -19,6 +19,7 @@ import java.io.InputStream;
 
 import com.artichokecore.mikana.BuildConfig;
 import com.artichokecore.mikana.R;
+import com.artichokecore.mikana.data.structures.KanaManager;
 import com.artichokecore.mikana.dialog.InfoDialog;
 import com.artichokecore.mikana.model.KanaManager;
 import com.artichokecore.mikana.score.Score;
@@ -105,7 +106,7 @@ public final class MainActivity extends AppCompatActivity {
 
     public void onNextPressed(View view) {
         getAnswerView().setText("");
-        kanaManager.selectRandomKana(KanaManager.WITHOUT_REPETITION);
+        kanaManager.selectRandomKana();
         getKanaView().setText(kanaManager.getCurrentKana().getKanaChar());
 
         score.nextButtonPressed();

@@ -6,8 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.artichokecore.mikana.R;
+import com.artichokecore.mikana.config.Path;
 import com.artichokecore.mikana.config.StaticConfig;
-import com.artichokecore.mikana.model.KanaManager;
+import com.artichokecore.mikana.data.structures.KanaManager;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
@@ -21,9 +22,6 @@ import java.io.InputStream;
 public final class InitActivity extends AppCompatActivity {
 
     public static InterstitialAd mInterstitialAd;
-
-    private static final int INIT_DELAY = 2000;
-    private static final String SYLLABARIES_FILE_NAME = "syllabaries.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +42,13 @@ public final class InitActivity extends AppCompatActivity {
                 setTheme(R.style.AppTheme_NoActionBar);
                 finish();
             }
-        }, INIT_DELAY);
+        }, StaticConfig.INIT_DELAY);
 
     }
 
     private void loadKanas() {
         try {
-            InputStream syllabariesStream = getAssets().open(SYLLABARIES_FILE_NAME);
+            InputStream syllabariesStream = getAssets().open(Path.SYLLABARIES_FILE_NAME);
 
             KanaManager kanaManager;
             kanaManager = KanaManager.getInstance(syllabariesStream);
