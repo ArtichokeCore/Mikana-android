@@ -7,6 +7,7 @@ import com.artichokecore.mikana.config.StaticConfig;
 import com.artichokecore.mikana.data.model.Kana;
 import com.artichokecore.mikana.data.model.Syllabary;
 import com.artichokecore.mikana.data.structures.KanaMatrix;
+import com.artichokecore.mikana.data.structures.KanaSelector;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,15 +15,14 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 
-public final class KanaFacade {
-
+public abstract class KanaFacade {
 
     /**
      * Loads all Kana static data from InputStream and add to kanaRow.
@@ -72,8 +72,9 @@ public final class KanaFacade {
     }
 
 
-    public static Syllabary loadSelectedKanas(Context context, KanaMatrix matrix, List<Kana> selectedKanas) throws IOException {
+    public static Syllabary loadSelectedKanas(Context context, KanaMatrix matrix, KanaSelector selector) throws IOException {
 
+        List<Kana> selectedKanas = new LinkedList<>();
         Syllabary currentSyllabary = null;
 
         File fileToRead = new File(context.getFilesDir(), Path.LAST_SELECT_FILE_PATH);
@@ -100,7 +101,26 @@ public final class KanaFacade {
                 );
             }
 
+            selector.selectKanas(selectedKanas);
             return currentSyllabary;
+    }
+
+    public static void saveSelectedKanas(Context context, Syllabary currentSyllabary,
+                                         KanaSelector selector, KanaMatrix matrix) {
+        try {
+            FileWriter out = new FileWriter(new File(context.getFilesDir(), Path.LAST_SELECT_FILE_PATH));
+
+            out.write(currentSyllabary.name() + "\n");
+
+            for(Kana kana: selector.getSelectedKanas()) {
+                int[] pos = matrix.getKanaPos(kana, currentSyllabary);
+                out.write(pos[0] + StaticConfig.SPLIT_TOKEN + pos[1] +"\n");
+            }
+
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -63,11 +63,9 @@ public final class KanaManager {
 
     public void loadSelectedKanas(Context context) {
 
-        List<Kana> selectedKanas = new LinkedList<>();
         try {
-            Syllabary loadSyl = KanaFacade.loadSelectedKanas(context, getKanaMatrix(), selectedKanas);
+            Syllabary loadSyl = KanaFacade.loadSelectedKanas(context, getKanaMatrix(), getSelector());
             setCurrentSyllabary(loadSyl);
-            selectKanas(selectedKanas);
         } catch (IOException e) {
             selectFirstRow();
         }
@@ -75,20 +73,7 @@ public final class KanaManager {
 
     public void saveSelectedKanas(Context context) {
 
-        try {
-            FileWriter out = new FileWriter(new File(context.getFilesDir(), Path.LAST_SELECT_FILE_PATH));
-
-            out.write(currentSyllabary.name() + "\n");
-
-            for(Kana kana: getSelector().getSelectedKanas()) {
-                int[] pos = getKanaMatrix().getKanaPos(kana, getCurrentSyllabary());
-                out.write(pos[0] + StaticConfig.SPLIT_TOKEN + pos[1] +"\n");
-            }
-
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        KanaFacade.saveSelectedKanas(context, getCurrentSyllabary(), getSelector(), getKanaMatrix());
     }
 
     /**

@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-final class KanaSelector {
+public final class KanaSelector {
 
     private List<Kana> selectedKanas;
     private List<Kana> unusedKanas;
@@ -19,7 +19,7 @@ final class KanaSelector {
         setUnusedKanas(new LinkedList<Kana>());
     }
 
-    protected void selectKanas(List<Kana> selectedKanas) {
+    public void selectKanas(List<Kana> selectedKanas) {
         getSelectedKanas().clear();
         getSelectedKanas().addAll(selectedKanas);
 
