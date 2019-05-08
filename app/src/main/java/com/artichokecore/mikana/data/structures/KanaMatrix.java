@@ -22,7 +22,7 @@ public final class KanaMatrix {
         return getSyllabaryMatrix(syllabary).get(0);
     }
 
-    protected Kana getKanaByPos(int row, int column, Syllabary syllabary) {
+    public Kana getKanaByPos(int row, int column, Syllabary syllabary) {
         return getKanaRow(row, syllabary).get(column);
     }
 

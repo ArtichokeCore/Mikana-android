@@ -63,36 +63,11 @@ public final class KanaManager {
 
     public void loadSelectedKanas(Context context) {
 
-        File fileToRead = new File(context.getFilesDir(), Path.LAST_SELECT_FILE_PATH);
-
-        String line;
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileToRead))) {
-            line = reader.readLine();
-
-            if(line == null)
-                throw new IOException();
-
-            if(line.equalsIgnoreCase(Syllabary.HIRAGANA.name()))
-                setCurrentSyllabary(Syllabary.HIRAGANA);
-            else
-                setCurrentSyllabary(Syllabary.KATAKANA);
-
-            List<Kana> selectedKanas = new LinkedList<>();
-
-            while ((line = reader.readLine()) != null){
-                String[] splitLine = line.split(StaticConfig.SPLIT_TOKEN);
-                selectedKanas.add(
-                        getKana(Integer.parseInt(splitLine[0]),
-                                Integer.parseInt(splitLine[1]))
-                );
-            }
-
+        List<Kana> selectedKanas = new LinkedList<>();
+        try {
+            Syllabary loadSyl = KanaFacade.loadSelectedKanas(context, getKanaMatrix(), selectedKanas);
+            setCurrentSyllabary(loadSyl);
             selectKanas(selectedKanas);
-
-        } catch (FileNotFoundException e) {
-            selectFirstRow();
-            saveSelectedKanas(context);
         } catch (IOException e) {
             selectFirstRow();
         }

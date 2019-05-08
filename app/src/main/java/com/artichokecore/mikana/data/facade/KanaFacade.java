@@ -1,5 +1,9 @@
 package com.artichokecore.mikana.data.facade;
 
+import android.content.Context;
+
+import com.artichokecore.mikana.config.Path;
+import com.artichokecore.mikana.config.StaticConfig;
 import com.artichokecore.mikana.data.model.Kana;
 import com.artichokecore.mikana.data.model.Syllabary;
 import com.artichokecore.mikana.data.structures.KanaMatrix;
@@ -8,6 +12,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
@@ -61,6 +69,38 @@ public final class KanaFacade {
             }
             matrix.addRow(kanaRow, syllabary);
         }
+    }
+
+
+    public static Syllabary loadSelectedKanas(Context context, KanaMatrix matrix, List<Kana> selectedKanas) throws IOException {
+
+        Syllabary currentSyllabary = null;
+
+        File fileToRead = new File(context.getFilesDir(), Path.LAST_SELECT_FILE_PATH);
+
+        String line;
+
+        BufferedReader reader = new BufferedReader(new FileReader(fileToRead));
+            line = reader.readLine();
+
+            if(line == null)
+                throw new IOException();
+
+            if(line.equalsIgnoreCase(Syllabary.HIRAGANA.name()))
+                currentSyllabary = Syllabary.HIRAGANA;
+            else
+                currentSyllabary = Syllabary.KATAKANA;
+
+
+            while ((line = reader.readLine()) != null){
+                String[] splitLine = line.split(StaticConfig.SPLIT_TOKEN);
+                selectedKanas.add(
+                        matrix.getKanaByPos(Integer.parseInt(splitLine[0]),
+                                Integer.parseInt(splitLine[1]), currentSyllabary)
+                );
+            }
+
+            return currentSyllabary;
     }
 
 }
