@@ -12,6 +12,8 @@ final class KanaSelector {
     private List<Kana> selectedKanas;
     private List<Kana> unusedKanas;
 
+    private Kana lastKana;
+
     protected KanaSelector() {
         setSelectedKanas(new ArrayList<Kana>());
         setUnusedKanas(new LinkedList<Kana>());
@@ -27,6 +29,14 @@ final class KanaSelector {
     protected Kana getRandomKana() {
         Kana randomKana = getUnusedKanas().get(0);
         getUnusedKanas().remove(0);
+
+        if(lastKana == randomKana) {
+            Kana auxKana = randomKana;
+            randomKana = getUnusedKanas().get(0);
+            getUnusedKanas().add(auxKana);
+        }
+
+        setLastKana(randomKana);
 
         if(getUnusedKanas().size() <= 0)
             randomizeSelectedKanas();
@@ -65,5 +75,13 @@ final class KanaSelector {
 
     public void setUnusedKanas(List<Kana> unusedKanas) {
         this.unusedKanas = unusedKanas;
+    }
+
+    public Kana getLastKana() {
+        return lastKana;
+    }
+
+    public void setLastKana(Kana lastKana) {
+        this.lastKana = lastKana;
     }
 }
