@@ -113,7 +113,7 @@ public final class KanaManager {
 
             out.close();
         } catch (IOException e) {
-            //TODO: Imposible guardar configuracion
+            e.printStackTrace();
         }
     }
 
@@ -194,16 +194,6 @@ public final class KanaManager {
     }
 
     /**
-     * Check if Kana it is included
-     * @param row pointer of kanaRows.
-     * @param column pointer of kanaRows.
-     * @return boolean This returns true if referenced kana is included in selected kanas.
-     */
-    public boolean isSelected(int row, int column) {
-        return isSelected(getKana(row, column));
-    }
-
-    /**
      * Check if Kana exist.
      * @param row pointer of kanaRows.
      * @param column pointer of kanaRows.
@@ -232,9 +222,6 @@ public final class KanaManager {
         getSelector().selectKanas(selectedKanas);
     }
 
-    public int getSizeOfSelectedKanas() {
-        return getSelector().getSelectedKanas().size();
-    }
 
     // Getters & Setters
 
