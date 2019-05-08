@@ -1,4 +1,4 @@
-package com.artichokecore.mikana.model;
+package com.artichokecore.mikana.data.model;
 
 public final class Kana {
 

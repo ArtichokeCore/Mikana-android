@@ -4,8 +4,9 @@ import android.content.Context;
 
 import com.artichokecore.mikana.config.Path;
 import com.artichokecore.mikana.config.StaticConfig;
-import com.artichokecore.mikana.model.Kana;
-import com.artichokecore.mikana.model.Syllabary;
+import com.artichokecore.mikana.data.facade.KanaFacade;
+import com.artichokecore.mikana.data.model.Kana;
+import com.artichokecore.mikana.data.model.Syllabary;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,10 +19,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 
 public final class KanaManager {
 
@@ -125,46 +124,9 @@ public final class KanaManager {
         return singleton;
     }
 
-    /**
-     * Loads all Kana static data from InputStream and add to kanaRow.
-     * @param kanaStream InputStream pointing to file with all static data.
-     * @exception IOException On input error.
-     * @exception JSONException Data format error.
-     */
+
     private void loadDataFromJSON(InputStream kanaStream) throws IOException, JSONException {
-
-        int streamSize = kanaStream.available();
-        byte[] buffer = new byte[streamSize];
-        kanaStream.read(buffer);
-        kanaStream.close();
-
-        String json = new String(buffer, "UTF-8");
-        JSONObject allJSONData = new JSONObject(json);
-
-        parseSyllabary(allJSONData.getJSONArray(Kana.HIRAGANA_ATTR), Syllabary.HIRAGANA);
-        parseSyllabary(allJSONData.getJSONArray(Kana.KATAKANA_ATTR), Syllabary.KATAKANA);
-    }
-
-    /**
-     * Add all kanas to kanaRow from JSONArray.
-     * @param jsonSyllabary JSONObject with all Hiragana or Katakana rows.
-     * @param syllabary Indicates the current syllabary.
-     * @exception JSONException Data format error.
-     */
-    private void parseSyllabary(JSONArray jsonSyllabary, Syllabary syllabary) throws JSONException {
-        for(int rowIndex = 0; rowIndex < jsonSyllabary.length(); rowIndex++) {
-            List<Kana> kanaRow = new LinkedList<>();
-            JSONArray jsonRow = jsonSyllabary.getJSONArray(rowIndex);
-            for(int kanaIndex = 0; kanaIndex < jsonRow.length(); kanaIndex++) {
-                JSONObject jsonKana = jsonRow.getJSONObject(kanaIndex);
-                Kana loadedKana = new Kana(syllabary,
-                        jsonKana.getString(Kana.JAPANESE_KANA_ATTR),
-                        jsonKana.getString(Kana.ROMAJI_ATTR)
-                );
-                kanaRow.add(loadedKana);
-            }
-            getKanaMatrix().addRow(kanaRow, syllabary);
-        }
+        setKanaMatrix(KanaFacade.loadKanaMatrix(kanaStream));
     }
 
     /**

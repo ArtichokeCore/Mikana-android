@@ -1,6 +1,6 @@
 package com.artichokecore.mikana.data.structures;
 
-import com.artichokecore.mikana.model.Kana;
+import com.artichokecore.mikana.data.model.Kana;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
