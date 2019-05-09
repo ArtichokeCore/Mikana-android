@@ -15,4 +15,8 @@
     <string name="score">Score</string>
     <string name="exit">Please click BACK again to exit</string>
     <string name="description_dialog">Mikana is a software made by</string>
+    
+    <!--Dialog Info-->
+    <string name="icons_by"><u>Icons by FontAwesome</u></string>
+    <string name="version">Version %s</string>
 </resources>

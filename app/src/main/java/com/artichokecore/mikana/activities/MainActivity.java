@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.LinearLayout;
@@ -15,6 +16,10 @@ import com.artichokecore.mikana.R;
 import com.artichokecore.mikana.data.structures.KanaManager;
 import com.artichokecore.mikana.dialog.InfoDialog;
 import com.artichokecore.mikana.score.Score;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+
+import static com.artichokecore.mikana.activities.InitActivity.mInterstitialAd;
 
 public final class MainActivity extends AppCompatActivity {
 
@@ -25,6 +30,8 @@ public final class MainActivity extends AppCompatActivity {
     private TextView kanaView, answerView, scoreView;
     private ProgressBar progressBar;
     private boolean doubleBackToExitPressedOnce = false;
+
+    private boolean hasSelected = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +53,47 @@ public final class MainActivity extends AppCompatActivity {
         getScoreView().setText(score.toString());
 
         setClickListeners();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(hasSelected) {
+            startAdd();
+            onNextPressed(getKanaView());
+
+            score.restart();
+            getScoreView().setText(score.toString());
+        }
+
+        hasSelected = false;
+    }
+
+    private void startAdd(){
+        mInterstitialAd.setAdListener(new AdListener() {
+
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+            }
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+            }
+
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+                mInterstitialAd.loadAd(new AdRequest.Builder().addTestDevice(getString(R.string.ID_Device_danllopis)).build());
+            }
+        });
+
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+        }
     }
 
     private void setClickListeners() {
@@ -77,6 +125,7 @@ public final class MainActivity extends AppCompatActivity {
     }
 
     public void onSelectPressed(View view) {
+        hasSelected = true;
         Intent intent = new Intent(this, SelectActivity.class);
         startActivity(intent);
     }

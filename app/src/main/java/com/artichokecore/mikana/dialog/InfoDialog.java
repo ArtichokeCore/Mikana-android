@@ -1,7 +1,9 @@
 package com.artichokecore.mikana.dialog;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,6 +21,8 @@ import com.artichokecore.mikana.R;
 
 public class InfoDialog extends DialogFragment {
 
+    TextView hyperLinkFontAwesome;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +33,18 @@ public class InfoDialog extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_info, container, false);
         TextView idVersion = view.findViewById(R.id.version);
-        idVersion.setText("Version "+ BuildConfig.VERSION_NAME);
+        hyperLinkFontAwesome = view.findViewById(R.id.fontAwesome);
+        idVersion.setText(String.format(getString(R.string.version), BuildConfig.VERSION_NAME));
+
+        hyperLinkFontAwesome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("https://fontawesome.com/license");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
