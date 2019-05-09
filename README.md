@@ -2,7 +2,7 @@
 
 [![](https://img.shields.io/github/license/ArtichokeCore/Mikana-android.svg)](https://github.com/ArtichokeCore/Mikana-android/blob/master/LICENSE)
 ![](https://img.shields.io/badge/version-0.1-blue.svg)
-[![codebeat badge](https://codebeat.co/badges/3647bfdf-35cd-493f-88f9-d49d12dcb678)](https://codebeat.co/projects/github-com-artichokecore-mikana-android-master)
+[![codebeat badge](https://codebeat.co/badges/e96ca0f5-d64c-4a51-96b4-a95d9b8677db)](https://codebeat.co/projects/github-com-artichokecore-mikana-android-master)
 ![](https://img.shields.io/badge/PRs-welcome-green.svg)
 
 Minimalist mobile app to practice Japanese syllabaries, Hiragana and Katakana. Made for Android, based on [Kanami](http://www.kabi404.me/Kanami/).
