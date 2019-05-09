@@ -4,8 +4,9 @@ import android.content.Context;
 
 import com.artichokecore.mikana.config.Path;
 import com.artichokecore.mikana.config.StaticConfig;
-import com.artichokecore.mikana.model.Kana;
-import com.artichokecore.mikana.model.Syllabary;
+import com.artichokecore.mikana.data.facade.KanaFacade;
+import com.artichokecore.mikana.data.model.Kana;
+import com.artichokecore.mikana.data.model.Syllabary;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,10 +19,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 
 public final class KanaManager {
 
@@ -64,36 +63,9 @@ public final class KanaManager {
 
     public void loadSelectedKanas(Context context) {
 
-        File fileToRead = new File(context.getFilesDir(), Path.LAST_SELECT_FILE_PATH);
-
-        String line;
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileToRead))) {
-            line = reader.readLine();
-
-            if(line == null)
-                throw new IOException();
-
-            if(line.equalsIgnoreCase(Syllabary.HIRAGANA.name()))
-                setCurrentSyllabary(Syllabary.HIRAGANA);
-            else
-                setCurrentSyllabary(Syllabary.KATAKANA);
-
-            List<Kana> selectedKanas = new LinkedList<>();
-
-            while ((line = reader.readLine()) != null){
-                String[] splitLine = line.split(StaticConfig.SPLIT_TOKEN);
-                selectedKanas.add(
-                        getKana(Integer.parseInt(splitLine[0]),
-                                Integer.parseInt(splitLine[1]))
-                );
-            }
-
-            selectKanas(selectedKanas);
-
-        } catch (FileNotFoundException e) {
-            selectFirstRow();
-            saveSelectedKanas(context);
+        try {
+            Syllabary loadSyl = KanaFacade.loadSelectedKanas(context, getKanaMatrix(), getSelector());
+            setCurrentSyllabary(loadSyl);
         } catch (IOException e) {
             selectFirstRow();
         }
@@ -101,20 +73,7 @@ public final class KanaManager {
 
     public void saveSelectedKanas(Context context) {
 
-        try {
-            FileWriter out = new FileWriter(new File(context.getFilesDir(), Path.LAST_SELECT_FILE_PATH));
-
-            out.write(currentSyllabary.name() + "\n");
-
-            for(Kana kana: getSelector().getSelectedKanas()) {
-                int[] pos = getKanaMatrix().getKanaPos(kana, getCurrentSyllabary());
-                out.write(pos[0] + StaticConfig.SPLIT_TOKEN + pos[1] +"\n");
-            }
-
-            out.close();
-        } catch (IOException e) {
-            //TODO: Imposible guardar configuracion
-        }
+        KanaFacade.saveSelectedKanas(context, getCurrentSyllabary(), getSelector(), getKanaMatrix());
     }
 
     /**
@@ -125,46 +84,9 @@ public final class KanaManager {
         return singleton;
     }
 
-    /**
-     * Loads all Kana static data from InputStream and add to kanaRow.
-     * @param kanaStream InputStream pointing to file with all static data.
-     * @exception IOException On input error.
-     * @exception JSONException Data format error.
-     */
+
     private void loadDataFromJSON(InputStream kanaStream) throws IOException, JSONException {
-
-        int streamSize = kanaStream.available();
-        byte[] buffer = new byte[streamSize];
-        kanaStream.read(buffer);
-        kanaStream.close();
-
-        String json = new String(buffer, "UTF-8");
-        JSONObject allJSONData = new JSONObject(json);
-
-        parseSyllabary(allJSONData.getJSONArray(Kana.HIRAGANA_ATTR), Syllabary.HIRAGANA);
-        parseSyllabary(allJSONData.getJSONArray(Kana.KATAKANA_ATTR), Syllabary.KATAKANA);
-    }
-
-    /**
-     * Add all kanas to kanaRow from JSONArray.
-     * @param jsonSyllabary JSONObject with all Hiragana or Katakana rows.
-     * @param syllabary Indicates the current syllabary.
-     * @exception JSONException Data format error.
-     */
-    private void parseSyllabary(JSONArray jsonSyllabary, Syllabary syllabary) throws JSONException {
-        for(int rowIndex = 0; rowIndex < jsonSyllabary.length(); rowIndex++) {
-            List<Kana> kanaRow = new LinkedList<>();
-            JSONArray jsonRow = jsonSyllabary.getJSONArray(rowIndex);
-            for(int kanaIndex = 0; kanaIndex < jsonRow.length(); kanaIndex++) {
-                JSONObject jsonKana = jsonRow.getJSONObject(kanaIndex);
-                Kana loadedKana = new Kana(syllabary,
-                        jsonKana.getString(Kana.JAPANESE_KANA_ATTR),
-                        jsonKana.getString(Kana.ROMAJI_ATTR)
-                );
-                kanaRow.add(loadedKana);
-            }
-            getKanaMatrix().addRow(kanaRow, syllabary);
-        }
+        setKanaMatrix(KanaFacade.loadKanaMatrix(kanaStream));
     }
 
     /**
@@ -191,16 +113,6 @@ public final class KanaManager {
      */
     public boolean isSelected(Kana kana) {
         return getSelector().getSelectedKanas().contains(kana);
-    }
-
-    /**
-     * Check if Kana it is included
-     * @param row pointer of kanaRows.
-     * @param column pointer of kanaRows.
-     * @return boolean This returns true if referenced kana is included in selected kanas.
-     */
-    public boolean isSelected(int row, int column) {
-        return isSelected(getKana(row, column));
     }
 
     /**
@@ -232,9 +144,6 @@ public final class KanaManager {
         getSelector().selectKanas(selectedKanas);
     }
 
-    public int getSizeOfSelectedKanas() {
-        return getSelector().getSelectedKanas().size();
-    }
 
     // Getters & Setters
 
