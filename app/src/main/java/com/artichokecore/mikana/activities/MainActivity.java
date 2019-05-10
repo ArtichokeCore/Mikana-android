@@ -90,7 +90,7 @@ public final class MainActivity extends AppCompatActivity {
         });
 
         if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
+           // mInterstitialAd.show();
         } else {
             Log.d("TAG", "The interstitial wasn't loaded yet.");
         }
