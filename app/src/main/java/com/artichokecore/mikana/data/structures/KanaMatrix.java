@@ -57,4 +57,14 @@ public final class KanaMatrix {
         this.matrix[Syllabary.HIRAGANA.ordinal()] = new ArrayList<>();
         this.matrix[Syllabary.KATAKANA.ordinal()] = new ArrayList<>();
     }
+
+    public Kana getKanaChar(String kanaChar, Syllabary syllabary) {
+        for(List<Kana> row: getSyllabaryMatrix(syllabary)) {
+            for(Kana kana: row) {
+                if(kana.getKanaChar().equals(kanaChar))
+                    return kana;
+            }
+        }
+        return null;
+    }
 }

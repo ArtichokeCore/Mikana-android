@@ -61,30 +61,12 @@ public final class SelectActivity extends AppCompatActivity implements View.OnCl
 
         Syllabary currentSyllabary = getHiraganaRadio().isChecked() ? Syllabary.HIRAGANA : Syllabary.KATAKANA;
         kanaManager.setCurrentSyllabary(currentSyllabary);
-        List<Kana> selectedKanas = new LinkedList<>();
-
-        for(int rowIndex = 0; rowIndex < getKanaRowsView().getChildCount(); rowIndex++) {
-            View rowView = getKanaRowsView().getChildAt(rowIndex);
-
-            CheckBox[] checks = new CheckBox[5];
-
-            checks[0] = rowView.findViewById(R.id.check1);
-            checks[1] = rowView.findViewById(R.id.check2);
-            checks[2] = rowView.findViewById(R.id.check3);
-            checks[3] = rowView.findViewById(R.id.check4);
-            checks[4] = rowView.findViewById(R.id.check5);
-
-            for(int columnIndex = 0; columnIndex < checks.length; columnIndex++) {
-                if(checks[columnIndex].isChecked()) {
-                    selectedKanas.add(kanaManager.getKana(rowIndex, columnIndex));
-                }
-            }
-        }
+        List<String> selectedKanas = getAdapter().getTemporalCheckdKanas();
 
         if(selectedKanas.size() <= 1)
             kanaManager.selectFirstRow();
         else
-            kanaManager.selectKanas(selectedKanas);
+            kanaManager.selectKanas(selectedKanas, currentSyllabary);
 
         kanaManager.saveSelectedKanas(getApplicationContext());
 
@@ -92,13 +74,23 @@ public final class SelectActivity extends AppCompatActivity implements View.OnCl
         Toast.makeText(this, getResources().getText(R.string.updateToast), Toast.LENGTH_SHORT).show();
     }
 
+    public void onCheckPressed(View view) {
+        CheckBox checkBox = (CheckBox) view;
+        if(checkBox.isChecked())
+            kanaManager.getSelector().getTemporalSelectedKanas().add(String.valueOf(checkBox.getText()));
+        else
+            kanaManager.getSelector().getTemporalSelectedKanas().remove(String.valueOf(checkBox.getText()));
+    }
+
     public void setToHiragana(View view) {
         kanaManager.setCurrentSyllabary(Syllabary.HIRAGANA);
+        getAdapter().getTemporalCheckdKanas().clear();
         adapter.notifyDataSetChanged();
     }
 
     public void setToKatakana(View view) {
         kanaManager.setCurrentSyllabary(Syllabary.KATAKANA);
+        getAdapter().getTemporalCheckdKanas().clear();
         adapter.notifyDataSetChanged();
     }
 

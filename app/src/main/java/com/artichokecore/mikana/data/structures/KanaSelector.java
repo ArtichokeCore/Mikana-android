@@ -1,6 +1,7 @@
 package com.artichokecore.mikana.data.structures;
 
 import com.artichokecore.mikana.data.model.Kana;
+import com.artichokecore.mikana.data.model.Syllabary;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -9,6 +10,7 @@ import java.util.Random;
 
 public final class KanaSelector {
 
+    private List<String> temporalSelectedKanas;
     private List<Kana> selectedKanas;
     private List<Kana> unusedKanas;
 
@@ -17,6 +19,7 @@ public final class KanaSelector {
     protected KanaSelector() {
         setSelectedKanas(new ArrayList<Kana>());
         setUnusedKanas(new LinkedList<Kana>());
+        setTemporalSelectedKanas(new LinkedList<String>());
     }
 
     public void selectKanas(List<Kana> selectedKanas) {
@@ -83,5 +86,13 @@ public final class KanaSelector {
 
     public void setLastKana(Kana lastKana) {
         this.lastKana = lastKana;
+    }
+
+    public List<String> getTemporalSelectedKanas() {
+        return temporalSelectedKanas;
+    }
+
+    public void setTemporalSelectedKanas(List<String> temporalSelectedKanas) {
+        this.temporalSelectedKanas = temporalSelectedKanas;
     }
 }

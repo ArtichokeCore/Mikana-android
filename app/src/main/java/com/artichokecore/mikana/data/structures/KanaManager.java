@@ -144,6 +144,16 @@ public final class KanaManager {
         getSelector().selectKanas(selectedKanas);
     }
 
+    public void selectKanas(List<String> selectedKanaChars, Syllabary syllabary) {
+        List<Kana> selectedKanas = new LinkedList<>();
+
+        for(String kanaChar: selectedKanaChars) {
+            selectedKanas.add(getKanaMatrix().getKanaChar(kanaChar, syllabary));
+        }
+
+        selectKanas(selectedKanas);
+    }
+
 
     // Getters & Setters
 

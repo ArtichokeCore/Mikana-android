@@ -1,15 +1,19 @@
 package com.artichokecore.mikana.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import com.artichokecore.mikana.R;
 import com.artichokecore.mikana.data.model.Kana;
 import com.artichokecore.mikana.data.structures.KanaManager;
+
+import java.util.List;
 
 public final class KanaRowsAdapter extends BaseAdapter {
 
@@ -19,11 +23,18 @@ public final class KanaRowsAdapter extends BaseAdapter {
 
     private Context context;
     private KanaManager kanaManager;
+    private List<String> temporalCheckdKanas;
 
     public KanaRowsAdapter(Context context) {
         setContext(context);
         setKanaManager(KanaManager.getInstance());
         setInflater((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
+        setTemporalCheckdKanas(getKanaManager().getSelector().getTemporalSelectedKanas());
+
+        getTemporalCheckdKanas().clear();
+        for(Kana selectedKana: getKanaManager().getSelector().getSelectedKanas()) {
+            getTemporalCheckdKanas().add(selectedKana.getKanaChar());
+        }
     }
 
     @Override
@@ -58,7 +69,7 @@ public final class KanaRowsAdapter extends BaseAdapter {
             if(kanaManager.exist(rowIndex, columnIndex)) {
                 Kana kana = kanaManager.getKana(rowIndex, columnIndex);
                 checks[columnIndex].setText(kana.getKanaChar());
-                if(kanaManager.isSelected(kana))
+                if(getTemporalCheckdKanas().contains(kana.getKanaChar()))
                     checks[columnIndex].setChecked(true);
             } else {
                 checks[columnIndex].setVisibility(View.INVISIBLE);
@@ -90,5 +101,13 @@ public final class KanaRowsAdapter extends BaseAdapter {
 
     public void setKanaManager(KanaManager kanaManager) {
         this.kanaManager = kanaManager;
+    }
+
+    public List<String> getTemporalCheckdKanas() {
+        return temporalCheckdKanas;
+    }
+
+    public void setTemporalCheckdKanas(List<String> temporalCheckdKanas) {
+        this.temporalCheckdKanas = temporalCheckdKanas;
     }
 }
