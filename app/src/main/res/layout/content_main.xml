@@ -29,11 +29,11 @@
 
         <TextView
             android:id="@+id/kanaView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textAppearance="@android:style/TextAppearance.Material.Menu"
-            android:textSize="175sp"
+            android:textSize="150sp"
             android:textColor="@color/white"/>
 
         <TextView
