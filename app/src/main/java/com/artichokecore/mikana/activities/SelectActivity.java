@@ -1,10 +1,8 @@
 package com.artichokecore.mikana.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ListView;
@@ -13,17 +11,9 @@ import android.widget.Toast;
 
 import com.artichokecore.mikana.R;
 import com.artichokecore.mikana.adapter.KanaRowsAdapter;
-import com.artichokecore.mikana.config.StaticConfig;
 import com.artichokecore.mikana.data.structures.KanaManager;
-import com.artichokecore.mikana.data.model.Kana;
 import com.artichokecore.mikana.data.model.Syllabary;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-
-import java.util.LinkedList;
 import java.util.List;
-
-import static com.artichokecore.mikana.activities.InitActivity.mInterstitialAd;
 
 public final class SelectActivity extends AppCompatActivity implements View.OnClickListener {
 

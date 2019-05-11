@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.artichokecore.mikana.R;
+import com.artichokecore.mikana.config.StaticConfig;
 import com.artichokecore.mikana.data.structures.KanaManager;
 import com.artichokecore.mikana.dialog.InfoDialog;
 import com.artichokecore.mikana.score.Score;
@@ -59,7 +60,9 @@ public final class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if(hasSelected) {
-            startAdd();
+            if(!StaticConfig.IS_PRO_VERSION) {
+                startAdd();
+            }
             onNextPressed(getKanaView());
 
             score.restart();
@@ -90,7 +93,7 @@ public final class MainActivity extends AppCompatActivity {
         });
 
         if (mInterstitialAd.isLoaded()) {
-           // mInterstitialAd.show();
+            mInterstitialAd.show();
         } else {
             Log.d("TAG", "The interstitial wasn't loaded yet.");
         }

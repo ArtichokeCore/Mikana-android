@@ -32,8 +32,9 @@ public final class InitActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                //if(!StaticConfig.IS_PRO_VERSION)
+                if(!StaticConfig.IS_PRO_VERSION) {
                     addAds();
+                }
 
                 loadKanas();
 
