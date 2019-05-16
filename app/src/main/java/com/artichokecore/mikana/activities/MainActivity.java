@@ -88,7 +88,7 @@ public final class MainActivity extends AppCompatActivity {
             @Override
             public void onAdClosed() {
                 super.onAdClosed();
-                mInterstitialAd.loadAd(new AdRequest.Builder().addTestDevice(getString(R.string.ID_Device_danllopis)).build());
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
             }
         });
 

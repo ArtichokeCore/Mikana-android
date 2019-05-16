@@ -65,8 +65,7 @@ public final class InitActivity extends AppCompatActivity {
         mInterstitialAd = new InterstitialAd(getApplicationContext());
         mInterstitialAd.setAdUnitId(getString(R.string.ID_Interstitial));
         mInterstitialAd.loadAd(new AdRequest.Builder()
-                .addTestDevice(getString(R.string.ID_Device_danllopis))
-                .build());
+                        .build());
 
         mInterstitialAd.setAdListener(new AdListener(){
             @Override
