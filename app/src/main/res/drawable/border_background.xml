@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:shape="rectangle">
-        <gradient android:endColor="@color/bluewy"
-            android:startColor="@color/lightGrey"/>
+        <gradient android:angle="225"
+            android:endColor="#044fab"
+            android:startColor="#21d6d3"
+            android:type="linear" />
         <corners android:radius="35dp"/>
 </shape>
