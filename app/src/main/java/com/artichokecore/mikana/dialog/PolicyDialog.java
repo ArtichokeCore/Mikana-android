@@ -1,6 +1,8 @@
 package com.artichokecore.mikana.dialog;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -15,13 +17,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
-
-import com.artichokecore.mikana.BuildConfig;
 import com.artichokecore.mikana.R;
+import com.artichokecore.mikana.activities.MainActivity;
 
-public class InfoDialog extends DialogFragment {
+public class PolicyDialog extends DialogFragment {
 
-    TextView hyperLinkFontAwesome, hyperLinkPolicy;
+    TextView hyperLinkPolicy;
+    TextView acceptButton, declineButton;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,20 +33,11 @@ public class InfoDialog extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialog_info, container, false);
-        TextView idVersion = view.findViewById(R.id.version);
-        hyperLinkFontAwesome = view.findViewById(R.id.fontAwesome);
+        View view = inflater.inflate(R.layout.policy_info, container, false);
         hyperLinkPolicy = view.findViewById(R.id.policyLink);
-        idVersion.setText(String.format(getString(R.string.version), BuildConfig.VERSION_NAME));
+        acceptButton = view.findViewById(R.id.acceptPolicyButton);
+        declineButton = view.findViewById(R.id.declinePolicyButton);
 
-        hyperLinkFontAwesome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Uri uri = Uri.parse("https://fontawesome.com/license");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-            }
-        });
 
         hyperLinkPolicy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +47,30 @@ public class InfoDialog extends DialogFragment {
                 startActivity(intent);
             }
         });
+
+        acceptButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sp = getActivity().getSharedPreferences("Preferences", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putBoolean("policy_check", true);
+                editor.commit();
+
+                Intent intent = new Intent(getContext().getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                getContext().setTheme(R.style.AppTheme_NoActionBar);
+                getActivity().finish();
+            }
+        });
+
+        declineButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
+
+
 
         return view;
     }
@@ -73,5 +90,11 @@ public class InfoDialog extends DialogFragment {
         int width = dm.widthPixels;
         window.setLayout((int) (width * 0.8), (int) (height * 0.6));
         window.setGravity(Gravity.CENTER);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        getActivity().finish();
     }
 }

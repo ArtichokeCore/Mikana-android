@@ -48,6 +48,17 @@
         android:textStyle="bold" />
 
     <TextView
+        android:id="@id/policyLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:text="@string/policyLink"
+        android:textColor="#FFFFFF"
+        android:textStyle="italic"
+        android:textAlignment="center" />
+
+    <TextView
         android:id="@+id/fontAwesome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

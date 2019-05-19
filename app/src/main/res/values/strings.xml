@@ -17,6 +17,11 @@
     <string name="description_dialog">Mikana is a software made by</string>
     
     <!--Dialog Info-->
-    <string name="icons_by"><u>Icons by FontAwesome</u></string>
-    <string name="version">Version %s</string>
+    <string name="icons_by" translatable="false"><u>Icons by FontAwesome</u></string>
+    <string name="version" translatable="false">Version %s</string>
+    <string name="policy">By using Mikana, you agree to the <u>Terms, Cookie Policy and Privacy Policy</u>.\n
+        More information in the link below:</string>
+    <string name="policyLink"><u>Terms, Cookie Policy and Privacy Policy</u></string>
+    <string name="agreePolicy">I agree the policy</string>
+    <string name="declinePolicy">Decline</string>
 </resources>

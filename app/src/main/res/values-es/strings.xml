@@ -15,4 +15,9 @@
     <string name="score">Puntuación</string>
     <string name="exit">Pulse otra vez ATRAS para salir</string>
     <string name="description_dialog">Mikana es un software hecho por</string>
+    <string name="policy">Al usar Mikana, aceptas los <u>Términos, Política de Cookies y Politica de Privacidad</u>.\n
+        Más información en el enlace de abajo:</string>
+    <string name="policyLink"><u>Términos, Política de Cookies y Politica de Privacidad</u></string>
+    <string name="declinePolicy">Rechazar</string>
+    <string name="agreePolicy">Acepto la politica</string>
 </resources>
