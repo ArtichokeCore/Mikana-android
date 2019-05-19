@@ -1,7 +1,7 @@
 # Mikana (Android version)
 
 [![](https://img.shields.io/github/license/ArtichokeCore/Mikana-android.svg)](https://github.com/ArtichokeCore/Mikana-android/blob/master/LICENSE)
-[![](https://img.shields.io/badge/version-1.0-blue.svg)](https://github.com/ArtichokeCore/Mikana-android/releases)
+[![](https://img.shields.io/badge/version-1.1-blue.svg)](https://github.com/ArtichokeCore/Mikana-android/releases)
 [![codebeat badge](https://codebeat.co/badges/e96ca0f5-d64c-4a51-96b4-a95d9b8677db)](https://codebeat.co/projects/github-com-artichokecore-mikana-android-master)
 ![](https://img.shields.io/badge/PRs-welcome-green.svg)
 
